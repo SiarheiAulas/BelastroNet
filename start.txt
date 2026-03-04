@@ -1,0 +1,175 @@
+1. Установка Laravel
+composer create-project laravel/laravel Belastro
+cd Belastro
+
+2. Настройка БД
+env
+DB_DATABASE=belastro
+DB_USERNAME=root
+DB_PASSWORD=
+
+php artisan migrate
+
+3. Установка Inertia + React
+composer require inertiajs/inertia-laravel
+php artisan inertia:middleware
+npm install @inertiajs/react react react-dom
+npm install -D @vitejs/plugin-react
+
+4. Настройка Vite
+
+vite.config.js:
+
+javascript
+import { defineConfig } from 'vite';
+import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: 'resources/js/app.jsx',
+            refresh: true,
+        }),
+        react(),
+    ],
+});
+
+5. Blade-шаблон
+resources/views/app.blade.php:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Belastro</title>
+    @viteReactRefresh
+    @vite(['resources/css/app.css', 'resources/js/app.jsx'])
+    @inertiaHead
+</head>
+<body>
+    @inertia
+</body>
+</html>
+
+6. Точка входа React
+
+resources/js/app.jsx:
+
+import { createInertiaApp } from '@inertiajs/react';
+import { createRoot } from 'react-dom/client';
+import './bootstrap';
+
+createInertiaApp({
+    resolve: name => import(`./Pages/${name}.jsx`),
+    setup({ el, App, props }) {
+        createRoot(el).render(<App {...props} />);
+    },
+});
+7. Bootstrap (с защитой от SSR)
+
+resources/js/bootstrap.js:
+
+import axios from 'axios';
+
+if (typeof window !== 'undefined') {
+    window.axios = axios;
+    window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+}
+
+8. Tailwind CSS
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+tailwind.config.js:
+
+export default {
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.jsx",
+    ],
+    theme: { extend: {} },
+    plugins: [],
+}
+resources/css/app.css:
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+9. Sanctum (аутентификация для SPA)
+composer require laravel/sanctum
+php artisan sanctum:install
+php artisan migrate
+
+config/cors.php:
+
+'paths' => ['api/*', 'sanctum/csrf-cookie'],
+'supports_credentials' => true,
+.env:
+
+env
+SESSION_DOMAIN=localhost
+SANCTUM_STATEFUL_DOMAINS=localhost:8000
+
+10. Fortify (полная аутентификация)
+
+composer require laravel/fortify
+php artisan fortify:install
+php artisan migrate
+
+config/fortify.php:
+
+'views' => true,
+'features' => [
+    Features::registration(),
+    Features::resetPasswords(),
+    Features::emailVerification(),
+],
+app/Providers/FortifyServiceProvider.php:
+
+Fortify::loginView(fn () => Inertia::render('Auth/Login'));
+Fortify::registerView(fn () => Inertia::render('Auth/Register'));
+
+11. Activity Log
+
+composer require spatie/laravel-activitylog
+php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="migrations"
+php artisan migrate
+
+12. React-страницы
+
+Создать структуру:
+
+resources/js/Pages/
+├── Auth/
+│   ├── Login.jsx
+│   ├── Register.jsx
+│   └── ForgotPassword.jsx
+│   └──и др.
+├── ActivityLogs.jsx
+├── Dashboard.jsx
+└── Home.jsx
+
+13. Маршруты
+
+routes/web.php:
+
+Route::get('/', fn () => Inertia::render('Home'));
+Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->middleware('auth');
+Route::get('/activity-logs', [ActivityLogController::class, 'index'])->middleware('auth');
+
+14. Запуск
+
+# Терминал 1
+php artisan serve
+
+# Терминал 2
+npm run dev
+
+15. Сборка для продакшена
+
+npm run build
