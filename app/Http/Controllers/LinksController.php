@@ -7,12 +7,20 @@ use App\Models\Link;
 
 class LinksController extends Controller
 {
-    public function index(){
-
+    public function __construct(){
+        
+        $this->authorizeResource(Link::class, 'link');
     }
 
-    public function show(Request $request){
+    public function index(){
+       
+        $link = Link::all();
+        return json_encode($link);
+    }
 
+    public function show(Link $link){
+       
+        return json_encode($link);
     }
 
     public function create(){
@@ -23,15 +31,15 @@ class LinksController extends Controller
 
     }
 
-    public function edite(Request $request){
+    public function edit(Link $link){
 
     }
 
-    public function update(Request $request){
+    public function update(Request $request, Link $link){
 
     }
 
-    public function delete(Request $request){
+    public function destroy(Link $link){
 
     }
 }

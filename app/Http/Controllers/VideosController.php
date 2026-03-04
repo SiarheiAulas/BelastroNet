@@ -7,12 +7,20 @@ use App\Models\Video;
 
 class VideosController extends Controller
 {
-    public function index(){
-
+    public function __construct(){
+        
+        $this->authorizeResource(Video::class, 'video');
     }
 
-    public function show(Request $request){
+    public function index(){
+        
+        $video = Video::all();
+        return json_encode($video);
+    }
 
+    public function show(Video $video){
+       
+        return json_encode($video);
     }
 
     public function create(){
@@ -23,15 +31,15 @@ class VideosController extends Controller
 
     }
 
-    public function edite(Request $request){
+    public function edit(Video $video){
 
     }
 
-    public function update(Request $request){
+    public function update(Request $request, Video $video){
 
     }
 
-    public function delete(Request $request){
+    public function destroy(Video $video){
 
     }
 }

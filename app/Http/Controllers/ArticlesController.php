@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Http\Controllers\UploadController;
 
 class ArticlesController extends Controller
 {
-    public function index(){
-        $test = ['route'=>'articles', 'content'=>'Articles List'];
-        $test = json_encode($test);
-        return $test;
+    public function __construct(){
+
+        $this->authorizeResource(Article::class, 'article');
     }
 
-    public function show(Request $request){
+    public function index(){
+        
+        $article = Article::all();
+        return json_encode($article);
+    }
 
+    public function show(Article $article){
+
+        return json_encode($article);
     }
 
     public function create(){
@@ -25,14 +32,14 @@ class ArticlesController extends Controller
 
     }
 
-    public function edite(Request $request){
+    public function edit(Article $article){
 
     }
 
-    public function update(Request $request){
+    public function update(Request $request, Article $article){
 
     }
 
-    public function delete(Request $request){
+    public function destroy(Article $article){
 
     }}

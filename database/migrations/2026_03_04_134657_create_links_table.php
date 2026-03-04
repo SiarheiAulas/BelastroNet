@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->bigInteger('author_id')->required();
             $table->string('title')->required();
             $table->string('url')->required();
             $table->text('description')->required();

@@ -7,12 +7,20 @@ use App\Models\Document;
 
 class DocumentsController extends Controller
 {
-public function index(){
-
+    public function __construct(){
+        
+        $this->authorizeResource(Document::class, 'document');
     }
 
-    public function show(Request $request){
+    public function index(){
+      
+        $document = Document::all();
+        return json_encode($document);
+    }
 
+    public function show(Document $document){
+        
+        return json_encode($document);
     }
 
     public function create(){
@@ -23,15 +31,15 @@ public function index(){
 
     }
 
-    public function edite(Request $request){
+    public function edit(Document $document){
 
     }
 
-    public function update(Request $request){
+    public function update(Request $request, Document $document){
 
     }
 
-    public function delete(Request $request){
+    public function destroy(Document $document){
 
     }
 }

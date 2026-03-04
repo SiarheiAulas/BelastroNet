@@ -7,12 +7,20 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    public function index(){
-
+    public function __construct(){
+        
+        $this->authorizeResource(News::class, 'news');
     }
 
-    public function show(Request $request){
+    public function index(){
+       
+        $news = News::all();
+        return json_encode($news);
+    }
 
+    public function show(News $news){
+       
+        return json_encode($news);
     }
 
     public function create(){
@@ -23,15 +31,15 @@ class NewsController extends Controller
 
     }
 
-    public function edite(Request $request){
+    public function edit(News $news){
 
     }
 
-    public function update(Request $request){
+    public function update(Request $request, News $news){
 
     }
 
-    public function delete(Request $request){
+    public function destroy(News $news){
 
     }
 }

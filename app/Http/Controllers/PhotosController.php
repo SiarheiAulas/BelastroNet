@@ -7,12 +7,20 @@ use App\Models\Photo;
 
 class PhotosController extends Controller
 {
-    public function index(){
-
+    public function __construct(){
+        
+        $this->authorizeResource(Photo::class, 'photo');
     }
 
-    public function show(Request $request){
+    public function index(){
+       
+        $photo = Photo::all();
+        return json_encode($photo);
+    }
 
+    public function show(Photo $photo){
+        
+        return json_encode($photo);
     }
 
     public function create(){
@@ -23,15 +31,15 @@ class PhotosController extends Controller
 
     }
 
-    public function edite(Request $request){
+    public function edit(Photo $photo){
 
     }
 
-    public function update(Request $request){
+    public function update(Request $request, Photo $photo){
 
     }
 
-    public function delete(Request $request){
+    public function destroy(Photo $photo){
 
     }
 }

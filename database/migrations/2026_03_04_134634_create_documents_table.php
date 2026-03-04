@@ -16,7 +16,6 @@ return new class extends Migration
             $table->timestamps();
             $table->bigInteger('author_id')->required();
             $table->string('title')->required();
-            $table->enum('type', ['txt','pdf','djvu'])->required();
             $table->string('storage_link')->required();
 
         });

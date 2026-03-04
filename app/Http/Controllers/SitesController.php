@@ -7,12 +7,20 @@ use App\Models\Site;
 
 class SitesController extends Controller
 {
-    public function index(){
-
+    public function __construct(){
+        
+        $this->authorizeResource(Site::class, 'site');
     }
 
-    public function show(Request $request){
+    public function index(){
+      
+        $site = Site::all();
+        return json_encode($site);
+    }
 
+    public function show(Site $site){
+      
+        return json_encode($site);
     }
 
     public function create(){
@@ -23,15 +31,15 @@ class SitesController extends Controller
 
     }
 
-    public function edite(Request $request){
+    public function edit(Site $site){
 
     }
 
-    public function update(Request $request){
+    public function update(Request $request, Site $site){
 
     }
 
-    public function delete(Request $request){
+    public function destroy(Site $site){
 
     }
 }
