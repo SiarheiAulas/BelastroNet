@@ -29,6 +29,8 @@ class LinksController extends Controller
 
     public function store(Request $request){
 
+        $validated = $request->validated();
+
     }
 
     public function edit(Link $link){
@@ -36,6 +38,8 @@ class LinksController extends Controller
     }
 
     public function update(Request $request, Link $link){
+
+        $validated = $request->validated();
 
     }
 

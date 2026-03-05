@@ -29,6 +29,8 @@ class PhotosController extends Controller
 
     public function store(Request $request){
 
+        $validated = $request->validated();
+
     }
 
     public function edit(Photo $photo){
@@ -36,6 +38,8 @@ class PhotosController extends Controller
     }
 
     public function update(Request $request, Photo $photo){
+
+        $validated = $request->validated();
 
     }
 

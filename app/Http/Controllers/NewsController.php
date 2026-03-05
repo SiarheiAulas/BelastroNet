@@ -29,6 +29,8 @@ class NewsController extends Controller
 
     public function store(Request $request){
 
+        $validated = $request->validated();
+
     }
 
     public function edit(News $news){
@@ -36,6 +38,8 @@ class NewsController extends Controller
     }
 
     public function update(Request $request, News $news){
+
+        $validated = $request->validated();
 
     }
 

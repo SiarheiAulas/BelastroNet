@@ -29,6 +29,8 @@ class DocumentsController extends Controller
 
     public function store(Request $request){
 
+        $validated = $request->validated();
+
     }
 
     public function edit(Document $document){
@@ -36,6 +38,8 @@ class DocumentsController extends Controller
     }
 
     public function update(Request $request, Document $document){
+
+        $validated = $request->validated();
 
     }
 

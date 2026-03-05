@@ -10,39 +10,29 @@ use App\Models\Video;
 class UploadController extends Controller
 {
     public function upload(Request $request){
+        
         if ($request->file('file')){
+           
             $file = $request->file('file');
-            $fileExt = $file->getClientOriginalExtension();
+            $fileExt = strtolower($file->getClientOriginalExtension());
             $fileName = $file->getClientOriginalName();
+            
             $date = now()->format('d-m-Y');
-            switch ($fileExt) {
-                case 'jpg':
-                case 'jpeg':
-                case 'png':
-                case 'gif':
-                case 'tiff':
-                case 'raw':
-                case 'bmp':
-                case 'svg':
-                case 'webp':
-                case 'heic':
-                case 'fits':
+            
+            $img_ext_options = ['jpg','jpeg','png','gif','tiff','raw','bmp','svg','webp','heic','fits'];
+            $video_ext_options = ['mp4','mov','avi','mkv','webm','mpeg'];
+            
+            if(in_array($fileExt, $img_ext_options)){
                     $type = 'img';
-                    break;
-                case 'mp4':
-                case 'mov':
-                case 'avi':
-                case 'mkv':
-                case 'webm':
-                case 'mpeg':
+            } elseif (in_array($fileExt, $video_ext_options)){
                     $type = 'movie';
-                    break;
-                default:
+            } else {
                     $type = 'doc';
-                    break;
             }
+            
             $path = $file->storeAs("$type/$date", $fileName, 'public');
             $url = asset('storage/' . $path);
+            
             return json_encode($url);
         }
     }

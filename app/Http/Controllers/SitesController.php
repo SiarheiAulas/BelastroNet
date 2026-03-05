@@ -29,6 +29,8 @@ class SitesController extends Controller
 
     public function store(Request $request){
 
+        $validated = $request->validated();
+
     }
 
     public function edit(Site $site){
@@ -36,6 +38,8 @@ class SitesController extends Controller
     }
 
     public function update(Request $request, Site $site){
+
+        $validated = $request->validated();
 
     }
 

@@ -16,7 +16,9 @@ return new class extends Migration
             $table->timestamps();
             $table->bigInteger('author_id')->required();
             $table->string('title')->required();
+            $table->text('description')->required();
             $table->string('storage_link')->required();
+            $table->timestamp('deleted_at')->nullable();
 
         });
     }

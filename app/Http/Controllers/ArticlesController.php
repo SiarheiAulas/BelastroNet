@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Http\Controllers\UploadController;
 
@@ -28,7 +28,9 @@ class ArticlesController extends Controller
 
     }
 
-    public function store(Request $request){
+    public function store(ArticleRequest $request){
+
+        $validated = $request->validated();
 
     }
 
@@ -36,7 +38,9 @@ class ArticlesController extends Controller
 
     }
 
-    public function update(Request $request, Article $article){
+    public function update(ArticleRequest $request, Article $article){
+
+        $validated = $request->validated();
 
     }
 

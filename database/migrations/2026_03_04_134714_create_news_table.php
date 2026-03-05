@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title')->required();
             $table->string('slug')->required();
             $table->text('text')->required();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
