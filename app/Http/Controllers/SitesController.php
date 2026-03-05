@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Site;
+use App\Http\Requests\SiteRequest;
+use App\Http\Resources\SiteResource;
 
 class SitesController extends Controller
 {
@@ -15,19 +17,19 @@ class SitesController extends Controller
     public function index(){
       
         $site = Site::all();
-        return json_encode($site);
+        return SiteResource::collection($site);
     }
 
     public function show(Site $site){
       
-        return json_encode($site);
+        return new SiteResource($site);
     }
 
     public function create(){
 
     }
 
-    public function store(Request $request){
+    public function store(SiteRequest $request){
 
         $validated = $request->validated();
 
@@ -37,7 +39,7 @@ class SitesController extends Controller
 
     }
 
-    public function update(Request $request, Site $site){
+    public function update(SiteRequest $request, Site $site){
 
         $validated = $request->validated();
 

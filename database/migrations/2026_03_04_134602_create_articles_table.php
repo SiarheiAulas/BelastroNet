@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('author_id')->required();
+            $table->timestamp('deleted_at')->nullable();
             $table->set('type', ['Мастерская','Маленькие_хитрости','Наблюдения','Рекомендации_по_наблюдениям','Обработка_фото_и_видео','Международные_астроновости','Разное']);
+            $table->string('author_id')->required();
             $table->string('title')->required();
             $table->string('slug')->required();
             $table->text('text')->required();
-            $table->timestamp('deleted_at')->nullable();
         });
     }
 

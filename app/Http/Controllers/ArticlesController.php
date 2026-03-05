@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Requests\ArticleRequest;
+use Illuminate\Http\Requests\Request;
 use App\Models\Article;
+use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\UploadController;
+use App\Http\Resources\ArticleResource;
 
 class ArticlesController extends Controller
 {
@@ -16,12 +18,12 @@ class ArticlesController extends Controller
     public function index(){
         
         $article = Article::all();
-        return json_encode($article);
+        return ArticleResource::collection($article);
     }
 
     public function show(Article $article){
 
-        return json_encode($article);
+        return new ArticleResource($article);
     }
 
     public function create(){

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
             $table->bigInteger('author_id')->required();
             $table->string('title')->required();
-            $table->text('description')->required();
             $table->string('storage_link')->required();
-            $table->timestamp('deleted_at')->nullable();
+            $table->text('description')->required();
         });
     }
 

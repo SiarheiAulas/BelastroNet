@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Photo;
+use App\Http\Requests\PhotoRequest;
+use App\Http\Controllers\UploadController;
+use App\Http\Resources\PhotoResource;
 
 class PhotosController extends Controller
 {
@@ -15,19 +18,19 @@ class PhotosController extends Controller
     public function index(){
        
         $photo = Photo::all();
-        return json_encode($photo);
+        return PhotoResource::collection($photo);
     }
 
     public function show(Photo $photo){
         
-        return json_encode($photo);
+        return new PhotoResource($photo);
     }
 
     public function create(){
 
     }
 
-    public function store(Request $request){
+    public function store(PhotoRequest $request){
 
         $validated = $request->validated();
 
@@ -37,7 +40,7 @@ class PhotosController extends Controller
 
     }
 
-    public function update(Request $request, Photo $photo){
+    public function update(PhotoRequest $request, Photo $photo){
 
         $validated = $request->validated();
 

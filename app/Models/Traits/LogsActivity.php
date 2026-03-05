@@ -6,6 +6,7 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity as OriginalLogsActivity;
 
 trait LogsActivity
+
 {
     use OriginalLogsActivity;
 

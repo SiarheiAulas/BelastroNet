@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Link;
+use App\Http\Requests\LinkRequest;
+use App\Http\Resources\LinkResource;
 
 class LinksController extends Controller
 {
@@ -15,19 +17,19 @@ class LinksController extends Controller
     public function index(){
        
         $link = Link::all();
-        return json_encode($link);
+        return LinkResource::collection($link);
     }
 
     public function show(Link $link){
        
-        return json_encode($link);
+        return new LinkResource($link);
     }
 
     public function create(){
 
     }
 
-    public function store(Request $request){
+    public function store(LinkRequest $request){
 
         $validated = $request->validated();
 
@@ -37,7 +39,7 @@ class LinksController extends Controller
 
     }
 
-    public function update(Request $request, Link $link){
+    public function update(LinkRequest $request, Link $link){
 
         $validated = $request->validated();
 

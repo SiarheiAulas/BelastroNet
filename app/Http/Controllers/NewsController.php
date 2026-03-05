@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Http\Requests\NewsRequest;
+use App\Http\Controllers\UploadController;
+use App\Http\Resources\NewsResource;
 
 class NewsController extends Controller
 {
@@ -15,19 +18,19 @@ class NewsController extends Controller
     public function index(){
        
         $news = News::all();
-        return json_encode($news);
+        return NewsResource::collection($news);
     }
 
     public function show(News $news){
        
-        return json_encode($news);
+        return new NewsResource($news);
     }
 
     public function create(){
 
     }
 
-    public function store(Request $request){
+    public function store(NewsRequest $request){
 
         $validated = $request->validated();
 
@@ -37,7 +40,7 @@ class NewsController extends Controller
 
     }
 
-    public function update(Request $request, News $news){
+    public function update(NewsRequest $request, News $news){
 
         $validated = $request->validated();
 

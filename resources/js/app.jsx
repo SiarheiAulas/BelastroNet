@@ -1,6 +1,6 @@
 import { createInertiaApp } from '@inertiajs/react';
 import { createRoot } from 'react-dom/client';
-import './bootstrap'; // если файл существует
+import './bootstrap';
 
 createInertiaApp({
     // Функция для поиска страниц-компонентов

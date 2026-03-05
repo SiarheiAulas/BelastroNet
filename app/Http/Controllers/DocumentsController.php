@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Requests\Request;
 use App\Models\Document;
+use App\Http\Requests\DocumentRequest;
+use App\Http\Controllers\UploadController;
+use App\Http\Resources\DocumentResource;
 
 class DocumentsController extends Controller
 {
@@ -15,19 +18,19 @@ class DocumentsController extends Controller
     public function index(){
       
         $document = Document::all();
-        return json_encode($document);
+        return DocumentResource::collection($document);
     }
 
     public function show(Document $document){
         
-        return json_encode($document);
+        return new DocumentResource($document);
     }
 
     public function create(){
 
     }
 
-    public function store(Request $request){
+    public function store(DocumentRequest $request){
 
         $validated = $request->validated();
 
@@ -37,7 +40,7 @@ class DocumentsController extends Controller
 
     }
 
-    public function update(Request $request, Document $document){
+    public function update(DocumentRequest $request, Document $document){
 
         $validated = $request->validated();
 

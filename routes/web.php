@@ -20,13 +20,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin', function () {
         return Inertia::render('Admin');
     })->name('admin');
+    
+    Route::get('/activity-logs', [ActivityLogsController::class, 'index'])->name('logs');
 });
-
-Route::middleware(['auth:sanctum'])->get('/activity-logs', [ActivityLogsController::class, 'index']);
 
 Route::resource('/articles', ArticlesController::class);
 
