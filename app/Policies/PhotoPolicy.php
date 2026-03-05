@@ -19,17 +19,17 @@ class PhotoPolicy
 
     public function create(User $user){
 
-        return $user->hasRole('admin');
+        return true;
     }
 
 
     public function update(User $user, Photo $photo){
 
-        return $user->hasRole('admin');
+        return $user->hasRole('admin')||$photo->author_id === $user->id;
     }
 
     public function delete(User $user, Photo $photo){
 
-        return $user->hasRole('admin');
+        return $user->hasRole('admin')||$photo->author_id === $user->id;
     }
 }

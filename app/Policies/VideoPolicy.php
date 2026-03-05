@@ -19,17 +19,17 @@ class VideoPolicy
 
     public function create(User $user){
 
-        return $user->hasRole('admin');
+        return true;
     }
 
 
     public function update(User $user, Video $video){
 
-        return $user->hasRole('admin');
+        return $user->hasRole('admin')||$video->author_id === $user->id;
     }
 
     public function delete(User $user, Video $video){
 
-        return $user->hasRole('admin');
+        return $user->hasRole('admin')||$video->author_id === $user->id;
     }
 }
