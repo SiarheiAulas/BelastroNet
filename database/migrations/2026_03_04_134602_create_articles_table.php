@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
-            $table->set('type', ['Мастерская','Маленькие_хитрости','Наблюдения','Рекомендации_по_наблюдениям','Обработка_фото_и_видео','Международные_астроновости','Разное']);
+            $table->set('type', ['workshop','tricks','observations','recommendations','photo_and_video','astronews','misc']);
             $table->string('author_id')->required();
             $table->string('title')->required();
             $table->string('slug')->required();

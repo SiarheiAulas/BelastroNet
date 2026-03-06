@@ -21,6 +21,13 @@ class ArticlesController extends Controller
         return ArticleResource::collection($article);
     }
 
+    public function sort($type){
+
+        $article = Article::where ('type', $type)->paginate(20);
+
+        return ArticleResource::collection($article);
+    }
+
     public function show(Article $article){
 
         return new ArticleResource($article);

@@ -18,6 +18,7 @@ class VideoResource extends JsonResource
             'id' => $this->id,
             'date_created_at' => $this->created_at->toDateString(),
             'author_name' => $this->author->name,
+            'type' => $this->type,
             'title' => $this->title,
             'description' => $this->description,
             'storage_link' => $this->storage_link

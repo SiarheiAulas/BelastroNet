@@ -15,7 +15,7 @@ class ArticleSeeder extends Seeder
     {
         Article::create([
             'author_id'=>'1',
-            'type'=>'Разное',
+            'type'=>'misc',
             'title'=>'article1',
             'slug'=>'test_article_1',
             'text'=>'lorem ipsum dolorem sit amet'
@@ -23,7 +23,7 @@ class ArticleSeeder extends Seeder
 
         Article::create([
             'author_id'=>'1',
-            'type'=>'Разное',
+            'type'=>'misc',
             'title'=>'article2',
             'slug'=>'test_article_2',
             'text'=>'lorem ipsum dolo'

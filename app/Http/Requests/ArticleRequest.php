@@ -22,7 +22,7 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type'=>'required|in:Мастерская,Маленькие_хитрости,Наблюдения,Рекомендации_по_наблюдениям,Обработка_фото_и_видео,Международные_астроновости,Разное',
+            'type'=>'required|in:workshop,tricks,observations,recommendations,photo_and_video,astronews,misc',
             'title'=>'required|string|max:255',
             'slug'=>'required|string|alpha_dash|max:50|unique:articles,slug',
             'text'=>'required|string'

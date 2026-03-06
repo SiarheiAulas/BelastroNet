@@ -141,22 +141,22 @@ MySQL ^8.0
 
 Установка
 
-# Клонирование репозитория
+Клонирование репозитория
 git clone https://github.com/username/belastronet.git
 cd belastronet
-# Установка PHP зависимостей
+Установка PHP зависимостей
 composer install
-# Установка Node зависимостей
+Установка Node зависимостей
 npm install
-# Копирование .env
+Копирование .env
 cp .env.example .env
-# Генерация ключа
+Генерация ключа
 php artisan key:generate
-# Запуск миграций и сидов
+Запуск миграций и сидов
 php artisan migrate
 php artisan db:seed --class=RolePermissionSeeder
 php artisan db:seed --class=UserSeeder
-# Запуск локального сервера
+Запуск локального сервера
 php artisan serve
 npm run dev
 
@@ -168,7 +168,7 @@ Scribe для автоматической документации
 
 Планы развития
 1	Тестирование — Unit и Feature тесты для политик и контроллеров
-2	Фильтрация и поиск — внедрение Laravel Scout (Meilisearch/MySQL)
+2	Поиск — внедрение Laravel Scout (Meilisearch/MySQL)
 
 Вклад в проект
 Проект находится в активной разработке. Предложения по улучшению приветствуются.

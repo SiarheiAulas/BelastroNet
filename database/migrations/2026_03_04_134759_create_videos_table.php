@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
+            $table->set('type', ['landscapes','sun_and_moon','solar_system','events','misc']);
             $table->bigInteger('author_id')->required();
             $table->string('title')->required();
             $table->string('storage_link')->required();

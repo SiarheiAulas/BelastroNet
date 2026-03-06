@@ -23,6 +23,7 @@ class VideoRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type'=>'required|in:landscapes,sun_and_moon,solar_system,events,misc',
             'title'=>'required|string|max:255',
             'description'=>'required|string',
             'file'=>[

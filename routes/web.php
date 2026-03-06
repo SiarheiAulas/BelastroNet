@@ -28,20 +28,23 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function ()
     Route::get('/activity-logs', [ActivityLogsController::class, 'index'])->name('logs');
 });
 
-Route::resource('/articles', ArticlesController::class);
-
-Route::resource('/documents', DocumentsController::class);
-
-Route::resource('/links', LinksController::class);
-
-Route::resource('/sites', SitesController::class);
-
-Route::resource('/news', NewsController::class);
-
-Route::resource('/photos', PhotosController::class);
-
-Route::resource('/videos', VideosController::class);
-
 Route::get('/search',[SearchController::class,'index'])->name('search');
-
 Route::post('/upload',[UploadController::class, 'upload'])->name('upload');
+
+Route::get('/articles/type/{type}', [ArticlesController::class, 'sort'])->name('articles_by_type');
+Route::get('/photos/type/{type}', [PhotosController::class, 'sort_by_type'])->name('photos_by_type');
+Route::get('/videos/type/{type}', [VideosController::class, 'sort_by_type'])->name('videos_by_type');
+
+Route::get('/photos/author/{author}', [PhotosController::class, 'sort_by_author'])->name('photos_by_author');
+Route::get('/videos/author/{author}', [VideosController::class, 'sort_by_author'])->name('videos_by_author');
+
+Route::get('/photos/my', [PhotosController::class, 'my_photos'])->name('my_photos');
+Route::get('/videos/my', [VideosController::class, 'my_videos'])->name('my_videos');
+
+Route::resource('/articles', ArticlesController::class);
+Route::resource('/documents', DocumentsController::class);
+Route::resource('/links', LinksController::class);
+Route::resource('/sites', SitesController::class);
+Route::resource('/news', NewsController::class);
+Route::resource('/photos', PhotosController::class);
+Route::resource('/videos', VideosController::class);

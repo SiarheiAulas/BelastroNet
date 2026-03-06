@@ -23,6 +23,7 @@ class PhotoRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type'=>'required|in:landscapes,sun_and_moon,solar_system,deepsky,sat,misc',
             'title'=>'required|string|max:255',
             'description'=>'required|string',
             'file'=> [
