@@ -28,7 +28,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function ()
     Route::get('/activity-logs', [ActivityLogsController::class, 'index'])->name('logs');
 });
 
-Route::get('/search',[SearchController::class,'index'])->name('search');
+Route::get('/search',[SearchController::class,'search'])->name('search');
 Route::post('/upload',[UploadController::class, 'upload'])->name('upload');
 
 Route::get('/articles/type/{type}', [ArticlesController::class, 'sort'])->name('articles_by_type');

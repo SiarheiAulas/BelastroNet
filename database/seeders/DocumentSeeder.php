@@ -16,13 +16,13 @@ class DocumentSeeder extends Seeder
         Document::create([
             'author_id'=>'1',
             'title'=>'document_1',
-            'description'=>'test documrnt 1',
+            'description'=>'test document 1',
             'storage_link'=>'./doc/example.pdf']);
 
         Document::create([
             'author_id'=>'1',
             'title'=>'document_2',
-            'description'=>'test documrnt 2',
+            'description'=>'test document 2',
             'storage_link'=>'./doc/example2.pdf']);
 
     }

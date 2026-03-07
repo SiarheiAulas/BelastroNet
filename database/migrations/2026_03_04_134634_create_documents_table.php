@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
-            $table->bigInteger('author_id')->required();
+            $table->foreignId('author_id')->required();
             $table->string('title')->required();
             $table->string('storage_link')->required();
             $table->text('description')->required();
+            $table->fullText(['title','description']);
         });
     }
 

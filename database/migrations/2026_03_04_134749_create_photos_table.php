@@ -16,10 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
             $table->set('type', ['landscapes','sun_and_moon','solar_system','deepsky','sat','misc']);
-            $table->bigInteger('author_id')->required();
+            $table->foreignId('author_id')->required();
             $table->string('title')->required();
             $table->string('storage_link')->required();
             $table->text('description')->required();
+            $table->fullText(['title','description']);
         });
     }
 

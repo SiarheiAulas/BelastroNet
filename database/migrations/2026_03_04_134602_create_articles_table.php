@@ -16,10 +16,11 @@ return new class extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
             $table->set('type', ['workshop','tricks','observations','recommendations','photo_and_video','astronews','misc']);
-            $table->string('author_id')->required();
+            $table->foreignId('author_id')->required();
             $table->string('title')->required();
             $table->string('slug')->required();
             $table->text('text')->required();
+            $table->fullText(['title','text']);
         });
     }
 
