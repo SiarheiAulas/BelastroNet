@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function ()
 Route::get('/search',[SearchController::class,'search'])->name('search');
 Route::post('/upload',[UploadController::class, 'upload'])->name('upload');
 Route::get('/users', [UserIndexShowController::class, 'index'])->name('users_index');
-Route::get('/user/{id}', [UserIndexShowController::class, 'show'])->name('user_profile');
+Route::get('/users/{user}', [UserIndexShowController::class, 'show'])->name('user_profile');
 Route::get('/articles/type/{type}', [ArticlesController::class, 'sort_by_type'])->name('articles_by_type');
 Route::get('/photos/type/{type}', [PhotosController::class, 'sort_by_type'])->name('photos_by_type');
 Route::get('/videos/type/{type}', [VideosController::class, 'sort_by_type'])->name('videos_by_type');
