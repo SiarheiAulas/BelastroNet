@@ -46,6 +46,8 @@ class LinksController extends Controller
     }
 
     public function destroy(Link $link){
-
+        
+        $link->delete();
+        return redirect()->back()->with('message', 'Удалено');
     }
 }

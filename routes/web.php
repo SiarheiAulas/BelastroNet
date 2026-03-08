@@ -12,6 +12,7 @@ use App\Http\Controllers\PhotosController;
 use App\Http\Controllers\VideosController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UserIndexShowController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -30,11 +31,12 @@ Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function ()
 
 Route::get('/search',[SearchController::class,'search'])->name('search');
 Route::post('/upload',[UploadController::class, 'upload'])->name('upload');
-
-Route::get('/articles/type/{type}', [ArticlesController::class, 'sort'])->name('articles_by_type');
+Route::get('/users', [UserIndexShowController::class, 'index'])->name('users_index');
+Route::get('/user/{id}', [UserIndexShowController::class, 'show'])->name('user_profile');
+Route::get('/articles/type/{type}', [ArticlesController::class, 'sort_by_type'])->name('articles_by_type');
 Route::get('/photos/type/{type}', [PhotosController::class, 'sort_by_type'])->name('photos_by_type');
 Route::get('/videos/type/{type}', [VideosController::class, 'sort_by_type'])->name('videos_by_type');
-
+Route::get('/articles/author/{author}', [ArticlesController::class, 'sort_by_author'])->name('articles_by_author');
 Route::get('/photos/author/{author}', [PhotosController::class, 'sort_by_author'])->name('photos_by_author');
 Route::get('/videos/author/{author}', [VideosController::class, 'sort_by_author'])->name('videos_by_author');
 

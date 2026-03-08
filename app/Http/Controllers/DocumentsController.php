@@ -48,5 +48,7 @@ class DocumentsController extends Controller
 
     public function destroy(Document $document){
 
+        $document->delete();
+        return redirect()->back()->with('message', 'Удалено');
     }
 }

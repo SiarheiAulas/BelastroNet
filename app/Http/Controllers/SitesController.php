@@ -47,5 +47,7 @@ class SitesController extends Controller
 
     public function destroy(Site $site){
 
+        $site->delete();
+        return redirect()->back()->with('message', 'Удалено');
     }
 }

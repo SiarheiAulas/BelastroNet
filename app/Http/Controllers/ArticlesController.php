@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Requests\Request;
 use App\Models\Article;
+use App\Models\User;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\UploadController;
 use App\Http\Resources\ArticleResource;
@@ -17,15 +18,20 @@ class ArticlesController extends Controller
 
     public function index(){
         
-        $article = Article::all();
-        return ArticleResource::collection($article);
+        $articles = Article::all();
+        return ArticleResource::collection($articles);
     }
 
-    public function sort($type){
+    public function sort_by_type($type){
 
-        $article = Article::where ('type', $type)->paginate(20);
+        $articles = Article::where ('type', $type)->latest()->paginate(20);
+        return ArticleResource::collection($articles);
+    }
 
-        return ArticleResource::collection($article);
+    public function sort_by_author(User $author){
+
+        $articles = Article::where('author_id', $author->id)->latest()->paginate(20);
+        return ArticleResource::collection($articles);
     }
 
     public function show(Article $article){
@@ -55,4 +61,7 @@ class ArticlesController extends Controller
 
     public function destroy(Article $article){
 
-    }}
+        $article->delete();
+        return redirect()->back()->with('message', 'Удалено');
+    }
+}

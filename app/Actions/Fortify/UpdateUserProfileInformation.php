@@ -30,6 +30,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
+            
+            'locale' => ['required', Rule::in(['ru', 'by', 'en'])],
+            'theme' => ['required', Rule::in(['light', 'dark'])],
         ])->validateWithBag('updateProfileInformation');
 
         if ($input['email'] !== $user->email &&
@@ -39,6 +42,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'locale' => $input['locale'],
+                'theme' => $input['theme']
             ])->save();
         }
     }
@@ -54,6 +59,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => $input['name'],
             'email' => $input['email'],
             'email_verified_at' => null,
+            'locale' => $input['locale'],
+            'theme' => $input['theme']
         ])->save();
 
         $user->sendEmailVerificationNotification();

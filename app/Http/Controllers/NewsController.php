@@ -17,7 +17,7 @@ class NewsController extends Controller
 
     public function index(){
        
-        $news = News::all();
+        $news = News::latest()->paginate(20);
         return NewsResource::collection($news);
     }
 
@@ -48,5 +48,7 @@ class NewsController extends Controller
 
     public function destroy(News $news){
 
+        $news->delete();
+        return redirect()->back()->with('success', 'Удалено');
     }
 }

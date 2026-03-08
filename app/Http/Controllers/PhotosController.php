@@ -70,5 +70,7 @@ class PhotosController extends Controller
 
     public function destroy(Photo $photo){
 
+        $photo->delete();
+        return redirect()->back()->with('message', 'Удалено');
     }
 }
