@@ -20,11 +20,7 @@ class SitesController extends Controller
         return SiteResource::collection($site);
     }
 
-    public function show(Site $site){
-      
-        return new SiteResource($site);
-    }
-
+    
     public function create(){
 
     }

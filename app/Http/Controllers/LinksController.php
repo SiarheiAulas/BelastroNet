@@ -20,11 +20,6 @@ class LinksController extends Controller
         return LinkResource::collection($link);
     }
 
-    public function show(Link $link){
-       
-        return new LinkResource($link);
-    }
-
     public function create(){
 
     }

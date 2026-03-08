@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Traits\HasFile;
+namespace App\Http\Controllers\Traits;
 
 trait HasFile {
 
@@ -26,4 +26,5 @@ trait HasFile {
             $url = asset('storage/' . $path);
           
             return $url;
+        }
 }
