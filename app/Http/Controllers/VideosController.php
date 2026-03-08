@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\Video;
 use App\Models\User;
 use App\Http\Requests\VideoRequest;
-use App\Http\Controllers\UploadController;
 use App\Http\Resources\VideoResource;
+use App\Http\Controllers\Traits\HasFile;
 
 class VideosController extends Controller
 {
+    use HasFile;
+
     public function __construct(){
         
         $this->authorizeResource(Video::class, 'video');
@@ -18,17 +20,15 @@ class VideosController extends Controller
 
     public function index(){
         
-        $video = Video::all();
+        $video = Video::paginate(20);
         return VideoResource::collection($video);
     }
 
     public function my_videos(){
 
-        if(auth()->id()){
-            $author_id = auth()->id();
-            $videos = Video::where('author_id', $author_id)->latest()->paginate(20);
-            return VideoResource::collection($videos);
-        }
+        $author_id = auth()->id();
+        $videos = Video::where('author_id', $author_id)->latest()->paginate(20);
+        return VideoResource::collection($videos);
     }
 
     public function sort_by_type($type){
@@ -56,6 +56,20 @@ class VideosController extends Controller
 
         $validated = $request->validated();
 
+        $video = new Video;
+
+        $video->type = $request->type;
+        $video->author_id = auth()->id();
+        $video->title = $request->title;
+        $video->description = $request->description;
+
+        $uploaded_video = $request->file('file');
+        $video->storage_link = $this->upload_file($uploaded_video);
+
+        $video->save();
+
+        return redirect()->back()->with('message', 'Видео создано');
+
     }
 
     public function edit(Video $video){
@@ -66,11 +80,23 @@ class VideosController extends Controller
 
         $validated = $request->validated();
 
+        $video->type = $request->type;
+        $video->title = $request->title;
+        $video->description = $request->description;
+
+        if($request->hasFile('file')){
+            $uploaded_video = $request->file('file');
+            $video->storage_link = $this->upload_file($uploaded_video);
+        }
+
+        $video->save();
+
+        return redirect()->back()->with('message', 'Видео обновлено');
     }
 
     public function destroy(Video $video){
        
         $video->delete();
-        return redirect()->back()->with('message', 'Удалено');
+        return redirect()->back()->with('message', 'Видео удалено');
     }
 }

@@ -15,20 +15,20 @@ use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserIndexShowController;
 
 Route::get('/', [HomeController::class, 'index']);
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/profile', function(){
+        return Inertia::render('profile');
+    })->name('profile');
 });
 Route::middleware(['auth:sanctum', 'verified', 'role:admin'])->group(function () {
     Route::get('/admin', function () {
         return Inertia::render('Admin');
     })->name('admin');
-    
     Route::get('/activity-logs', [ActivityLogsController::class, 'index'])->name('logs');
 });
-
 Route::get('/search',[SearchController::class,'search'])->name('search');
 Route::post('/upload',[UploadController::class, 'upload'])->name('upload');
 Route::get('/users', [UserIndexShowController::class, 'index'])->name('users_index');
@@ -39,10 +39,8 @@ Route::get('/videos/type/{type}', [VideosController::class, 'sort_by_type'])->na
 Route::get('/articles/author/{author}', [ArticlesController::class, 'sort_by_author'])->name('articles_by_author');
 Route::get('/photos/author/{author}', [PhotosController::class, 'sort_by_author'])->name('photos_by_author');
 Route::get('/videos/author/{author}', [VideosController::class, 'sort_by_author'])->name('videos_by_author');
-
 Route::get('/photos/my', [PhotosController::class, 'my_photos'])->name('my_photos');
 Route::get('/videos/my', [VideosController::class, 'my_videos'])->name('my_videos');
-
 Route::resource('/articles', ArticlesController::class);
 Route::resource('/documents', DocumentsController::class);
 Route::resource('/links', LinksController::class);

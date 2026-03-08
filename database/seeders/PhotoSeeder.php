@@ -14,7 +14,7 @@ class PhotoSeeder extends Seeder
     public function run(): void
     {
         Photo::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'photo1',
             'type' => 'landscapes',
             'description'=>'test_photo_1',
@@ -22,7 +22,7 @@ class PhotoSeeder extends Seeder
         ]);
 
         Photo::create([
-            'author_id'=>'2',
+            'author_id'=>2,
             'title'=>'photo2',
             'type' => 'deepsky',
             'description'=>'test_photo_2',
@@ -30,7 +30,7 @@ class PhotoSeeder extends Seeder
         ]);
 
         Photo::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'photo3',
             'type' => 'landscapes',
             'description'=>'test_photo_3',
@@ -38,7 +38,7 @@ class PhotoSeeder extends Seeder
         ]);
 
         Photo::create([
-            'author_id'=>'2',
+            'author_id'=>2,
             'title'=>'photo4',
             'type' => 'deepsky',
             'description'=>'test_photo_4',
@@ -46,7 +46,7 @@ class PhotoSeeder extends Seeder
         ]);
 
         Photo::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'photo5',
             'type' => 'landscapes',
             'description'=>'test_photo_5',
@@ -54,7 +54,7 @@ class PhotoSeeder extends Seeder
         ]);
 
         Photo::create([
-            'author_id'=>'2',
+            'author_id'=>2,
             'title'=>'photo6',
             'type' => 'deepsky',
             'description'=>'test_photo_6',
@@ -62,7 +62,7 @@ class PhotoSeeder extends Seeder
         ]);
 
         Photo::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'photo7',
             'type' => 'landscapes',
             'description'=>'test_photo_7',
@@ -70,7 +70,7 @@ class PhotoSeeder extends Seeder
         ]);
 
         Photo::create([
-            'author_id'=>'2',
+            'author_id'=>2,
             'title'=>'photo8',
             'type' => 'deepsky',
             'description'=>'test_photo_8',

@@ -14,7 +14,7 @@ class ArticleSeeder extends Seeder
     public function run(): void
     {
         Article::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'type'=>'misc',
             'title'=>'article1',
             'slug'=>'test_article_1',
@@ -22,7 +22,7 @@ class ArticleSeeder extends Seeder
         ]);
 
         Article::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'type'=>'misc',
             'title'=>'article2',
             'slug'=>'test_article_2',

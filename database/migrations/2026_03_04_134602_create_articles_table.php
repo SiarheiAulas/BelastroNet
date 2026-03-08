@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
             $table->set('type', ['workshop','tricks','observations','recommendations','photo_and_video','astronews','misc']);
             $table->foreignId('author_id')->required();
             $table->string('title')->required();

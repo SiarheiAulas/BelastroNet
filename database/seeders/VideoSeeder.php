@@ -14,7 +14,7 @@ class VideoSeeder extends Seeder
     public function run(): void
     {
         Video::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'video1',
             'type' =>'events',
             'description'=>'test_video_1',
@@ -22,7 +22,7 @@ class VideoSeeder extends Seeder
         ]);
 
         Video::create([
-            'author_id'=>'2',
+            'author_id'=>2,
             'title'=>'video2',
             'type' =>'solar_system',
             'description'=>'test_video_2',
@@ -30,7 +30,7 @@ class VideoSeeder extends Seeder
         ]);
 
         Video::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'video3',
             'type' =>'events',
             'description'=>'test_video_3',
@@ -38,14 +38,14 @@ class VideoSeeder extends Seeder
         ]);
 
         Video::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'video4',
             'type' =>'solar_system',
             'description'=>'test_video_4',
             'storage_link'=>'./movie/test_example_4.mp4'
         ]);
         Video::create([
-            'author_id'=>'2',
+            'author_id'=>2,
             'title'=>'video5',
             'type' =>'events',
             'description'=>'test_video_5',
@@ -53,7 +53,7 @@ class VideoSeeder extends Seeder
         ]);
 
         Video::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'video6',
             'type' =>'solar_system',
             'description'=>'test_video_6',

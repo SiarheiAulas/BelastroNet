@@ -33,7 +33,17 @@ class NewsController extends Controller
     public function store(NewsRequest $request){
 
         $validated = $request->validated();
+        
+        $news = new News;
 
+        $news->author_id = auth()->id();
+        $news->title = $request->title;
+        $news->slug = $request->slug;
+        $news->text = $request->text;
+
+        $news->save();
+
+        return redirect()->back()->with('message', 'Новость создана');
     }
 
     public function edit(News $news){
@@ -43,12 +53,19 @@ class NewsController extends Controller
     public function update(NewsRequest $request, News $news){
 
         $validated = $request->validated();
+        
+        $news->title = $request->title;
+        $news->slug = $request->slug;
+        $news->text = $request->text;
 
+        $news->save();
+
+        return redirect()->back()->with('message', 'Новость обновлена');
     }
 
     public function destroy(News $news){
 
         $news->delete();
-        return redirect()->back()->with('success', 'Удалено');
+        return redirect()->back()->with('message', 'Новость удалена');
     }
 }

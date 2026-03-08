@@ -16,7 +16,7 @@ class SitesController extends Controller
 
     public function index(){
       
-        $site = Site::all();
+        $site = Site::paginate(20);
         return SiteResource::collection($site);
     }
 
@@ -33,6 +33,18 @@ class SitesController extends Controller
 
         $validated = $request->validated();
 
+        $site = new Site;
+
+        $site->author_id = auth()->id();
+        $site->author = $request->author;
+        $site->title = $request->title;
+        $site->url = $request->url;
+        $site->description = $request->description;
+
+        $site->save();
+
+        return redirect()->back()->with('message', 'Сайт добавлен');
+
     }
 
     public function edit(Site $site){
@@ -42,12 +54,21 @@ class SitesController extends Controller
     public function update(SiteRequest $request, Site $site){
 
         $validated = $request->validated();
+        
+        $site->author = $request->author;
+        $site->title = $request->title;
+        $site->url = $request->url;
+        $site->description = $request->description;
+
+        $site->save();
+
+        return redirect()->back()->with('message', 'Сайт обновлен');
 
     }
 
     public function destroy(Site $site){
 
         $site->delete();
-        return redirect()->back()->with('message', 'Удалено');
+        return redirect()->back()->with('message', 'Сайт удален');
     }
 }

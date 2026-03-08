@@ -14,16 +14,16 @@ class LinkSeeder extends Seeder
     public function run(): void
     {
         Link::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'external_site_1',
-            'url'=>'example1.com',
+            'url'=>'http://example1.com',
             'description'=>'lorem ipsum example 1'
         ]);
 
         Link::create([
-            'author_id'=>'1',
+            'author_id'=>1,
             'title'=>'external_site_2',
-            'url'=>'example2.com',
+            'url'=>'http://example2.com',
             'description'=>'lorem ipsum example 2'
         ]);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\User;
 use App\Http\Requests\ArticleRequest;
@@ -18,7 +18,7 @@ class ArticlesController extends Controller
 
     public function index(){
         
-        $articles = Article::all();
+        $articles = Article::paginate(20);
         return ArticleResource::collection($articles);
     }
 
@@ -47,6 +47,17 @@ class ArticlesController extends Controller
 
         $validated = $request->validated();
 
+        $article = new Article;
+
+        $article->type = $request->type;
+        $article->author_id = auth()->id();
+        $article->title = $request->title;
+        $article->slug = $request->slug;
+        $article->text = $request->text;
+
+        $article->save();
+
+        return redirect()->back()->with('message', 'Статья создана');
     }
 
     public function edit(Article $article){
@@ -56,12 +67,20 @@ class ArticlesController extends Controller
     public function update(ArticleRequest $request, Article $article){
 
         $validated = $request->validated();
+        
+        $article->type = $request->type;    
+        $article->title = $request->title;
+        $article->slug = $request->slug;
+        $article->text = $request->text;
 
+        $article->save();
+
+        return redirect()->back()->with('message', 'Статья обновлена');
     }
 
     public function destroy(Article $article){
 
         $article->delete();
-        return redirect()->back()->with('message', 'Удалено');
+        return redirect()->back()->with('message', 'Статья удалена');
     }
 }

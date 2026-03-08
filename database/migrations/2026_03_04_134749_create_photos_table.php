@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
             $table->set('type', ['landscapes','sun_and_moon','solar_system','deepsky','sat','misc']);
             $table->foreignId('author_id')->required();
             $table->string('title')->required();

@@ -16,7 +16,7 @@ class LinksController extends Controller
 
     public function index(){
        
-        $link = Link::all();
+        $link = Link::paginate(20);
         return LinkResource::collection($link);
     }
 
@@ -33,6 +33,16 @@ class LinksController extends Controller
 
         $validated = $request->validated();
 
+        $link = new Link;
+
+        $link->author_id = auth()->id();
+        $link->title = $request->title;
+        $link->url = $request->url;
+        $link->description = $request->description;
+
+        $link->save();
+
+        return redirect()->back()->with('message', 'Ссылка добавлена');
     }
 
     public function edit(Link $link){
@@ -43,11 +53,18 @@ class LinksController extends Controller
 
         $validated = $request->validated();
 
+        $link->title = $request->title;
+        $link->url = $request->url;
+        $link->description = $request->description;
+
+        $link->save();
+
+        return redirect()->back()->with('message', 'Ссылка обновлена');
     }
 
     public function destroy(Link $link){
         
         $link->delete();
-        return redirect()->back()->with('message', 'Удалено');
+        return redirect()->back()->with('message', 'Ссылка удалена');
     }
 }

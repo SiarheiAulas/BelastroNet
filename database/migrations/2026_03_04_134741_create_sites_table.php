@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
             $table->foreignId('author_id')->required();
             $table->string('author')->required();
             $table->string('title')->required();

@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Models\User;
 use App\Http\Requests\PhotoRequest;
-use App\Http\Controllers\UploadController;
 use App\Http\Resources\PhotoResource;
+use App\Http\Controllers\Traits\HasFile;
+
 
 class PhotosController extends Controller
 {
+    use HasFile;
+
     public function __construct(){
         
         $this->authorizeResource(Photo::class, 'photo');
@@ -18,17 +21,15 @@ class PhotosController extends Controller
 
     public function index(){
        
-        $photo = Photo::all();
+        $photo = Photo::paginate(20);
         return PhotoResource::collection($photo);
     }
 
     public function my_photos(){
 
-        if(auth()->id()){
-            $author_id = auth()->id();
-            $photos = Photo::where('author_id', $author_id)->latest()->paginate(20);
-            return PhotoResource::collection($photos);
-        }
+        $author_id = auth()->id();
+        $photos = Photo::where('author_id', $author_id)->latest()->paginate(20);
+        return PhotoResource::collection($photos);
     }
 
     public function sort_by_type($type){
@@ -56,6 +57,19 @@ class PhotosController extends Controller
 
         $validated = $request->validated();
 
+        $photo= new Photo;
+
+        $photo->type = $request->type;
+        $photo->author_id = auth()->id();
+        $photo->title = $request->title;
+        $photo->description = $request->description;
+
+        $uploaded_photo = $request->file('file');
+        $photo->storage_link = $this->upload_file($uploaded_photo);
+
+        $photo->save();
+
+        return redirect()->back()->with('message', 'Фотография создана');
     }
 
     public function edit(Photo $photo){
@@ -65,12 +79,24 @@ class PhotosController extends Controller
     public function update(PhotoRequest $request, Photo $photo){
 
         $validated = $request->validated();
+        
+        $photo->type = $request->type;
+        $photo->title = $request->title;
+        $photo->description = $request->description;
 
+        if($request->hasFile('file')){
+            $uploaded_photo = $request->file('file');
+            $photo->storage_link = $this->upload_file($uploaded_photo);
+        }
+
+        $photo->save();
+
+        return redirect()->back()->with('message', 'Фотография обновлена');
     }
 
     public function destroy(Photo $photo){
 
         $photo->delete();
-        return redirect()->back()->with('message', 'Удалено');
+        return redirect()->back()->with('message', 'Фотография удалена');
     }
 }

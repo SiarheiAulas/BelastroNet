@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Models\Document;
 use App\Http\Requests\DocumentRequest;
-use App\Http\Controllers\UploadController;
 use App\Http\Resources\DocumentResource;
+use App\Http\Controllers\Traits\HasFile;
 
 class DocumentsController extends Controller
 {
+    use HasFile;
+
     public function __construct(){
         
         $this->authorizeResource(Document::class, 'document');
@@ -17,7 +19,7 @@ class DocumentsController extends Controller
 
     public function index(){
       
-        $document = Document::all();
+        $document = Document::paginate(20);
         return DocumentResource::collection($document);
     }
 
@@ -33,6 +35,19 @@ class DocumentsController extends Controller
     public function store(DocumentRequest $request){
 
         $validated = $request->validated();
+        
+        $document = new Document;
+
+        $document->author_id = auth()->id();
+        $document->title = $request->title;
+        $document->description = $request->description;
+
+        $file = $request->file('file');
+        $document->storage_link = $this->upload_file($file);
+
+        $document->save();
+
+        return redirect()->back()->with('message', 'Документ добавлен');
 
     }
 
@@ -44,11 +59,22 @@ class DocumentsController extends Controller
 
         $validated = $request->validated();
 
+        if($request->hasFile('file')){
+            $file = $request->file('file');
+            $document->storage_link = $this->upload_file($file);
+        }
+
+        $document->title = $request->title;
+        $document->description = $request->description;
+
+        $document->save();
+
+        return redirect()->back()->with('message', 'Документ обновлен');
     }
 
     public function destroy(Document $document){
 
         $document->delete();
-        return redirect()->back()->with('message', 'Удалено');
+        return redirect()->back()->with('message', 'Документ удален');
     }
 }
