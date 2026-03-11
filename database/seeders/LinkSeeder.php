@@ -20,11 +20,7 @@ class LinkSeeder extends Seeder
             'description'=>'lorem ipsum example 1'
         ]);
 
-        Link::create([
-            'author_id'=>1,
-            'title'=>'external_site_2',
-            'url'=>'http://example2.com',
-            'description'=>'lorem ipsum example 2'
-        ]);
+        Link::factory()->count(5)->create(['author_id' => 1]);
+
     }
 }

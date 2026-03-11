@@ -14,6 +14,8 @@ class Photo extends Model
 {
     use HasFactory, LogsActivity, SoftDeletes, HasAuthor, Searchable;
 
+    protected $fillable = ['type', 'author_id','title','storage_link','description'];
+
     #[SearchUsingFullText(['title', 'description'])]
     public function toSearchableArray(){
         

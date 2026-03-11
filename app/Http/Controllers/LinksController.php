@@ -11,7 +11,7 @@ class LinksController extends Controller
 {
     public function __construct(){
         
-        $this->authorizeResource(Link::class, 'link');
+        $this->authorizeResource(Link::class, 'link', ['except' => 'show']);
     }
 
     public function index(){

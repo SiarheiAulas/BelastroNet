@@ -20,13 +20,8 @@ class SiteSeeder extends Seeder
             'url'=>'https://example1.belastro.net',
             'description'=>'lorem ipsum example 1'
         ]);
+        
+        Site::factory()->count(5)->create(['author_id' => 1]);
 
-        Site::create([
-            'author_id'=>1,
-            'author'=>'test_author',
-            'title'=>'site_2',
-            'url'=>'https://example2.belastro.net',
-            'description'=>'lorem ipsum example 2'
-        ]);
     }
 }

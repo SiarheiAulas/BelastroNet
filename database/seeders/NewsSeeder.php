@@ -20,11 +20,7 @@ class NewsSeeder extends Seeder
             'text'=>'example news text 1'
         ]);
 
-        News::create([
-            'author_id'=>1,
-            'title'=>'news2',
-            'slug'=>'test_news_2',
-            'text'=>'example news text 2'
-        ]);
+        News::factory()->count(5)->create(['author_id' => 1]);
+
     }
 }

@@ -21,12 +21,6 @@ class ArticleSeeder extends Seeder
             'text'=>'lorem ipsum dolorem sit amet'
         ]);
 
-        Article::create([
-            'author_id'=>1,
-            'type'=>'misc',
-            'title'=>'article2',
-            'slug'=>'test_article_2',
-            'text'=>'lorem ipsum dolo'
-        ]);
+        Article::factory()->count(5)->create(['author_id' => 1]);
     }
 }

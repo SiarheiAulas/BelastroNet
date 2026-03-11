@@ -14,6 +14,8 @@ class News extends Model
 {
     use HasFactory, LogsActivity, SoftDeletes, HasAuthor, Searchable;
     
+    protected $fillable = ['author_id','title','slug','text'];
+
     #[SearchUsingFullText(['title', 'text'])]
     public function toSearchableArray(){
         

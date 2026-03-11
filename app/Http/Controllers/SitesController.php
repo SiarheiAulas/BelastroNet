@@ -11,7 +11,7 @@ class SitesController extends Controller
 {
     public function __construct(){
         
-        $this->authorizeResource(Site::class, 'site');
+        $this->authorizeResource(Site::class, 'site', ['except' => 'show']);
     }
 
     public function index(){

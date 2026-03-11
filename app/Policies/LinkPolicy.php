@@ -12,11 +12,6 @@ class LinkPolicy
         return true;
     }
 
-    public function view(? User $user, Link $link){
-
-        return true;
-    }
-
     public function create(User $user){
 
         return $user->hasRole('admin');
