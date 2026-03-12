@@ -16,7 +16,14 @@ class ArticleUpdateTest extends TestCase
     {
         $article = Article::factory()->create();
         $id = $article->id;
-        $response = $this->put("/articles/{$id}", ['title' => 'new_test_title_1', 'text' => 'new_test_text_1']);
+        $response = $this->put("/articles/{$id}", [
+                                                'title_ru' => 'new_test_title_1',
+                                                'text_ru' => 'new_test_text_1',
+                                                'title_by' => 'new_test_title_1',
+                                                'text_by' => 'new_test_text_1',
+                                                'title_en' => 'new_test_title_1',
+                                                'text_en' => 'new_test_text_1',
+                                            ]);
         $this->assertTrue(in_array($response->status(), [302,403]));
     }
 
@@ -26,7 +33,14 @@ class ArticleUpdateTest extends TestCase
         $user->assignRole('user');
         $article = Article::factory()->create();
         $id = $article->id;
-        $response = $this->actingAs($user)->put("/articles/{$id}", ['title' => 'new_test_title_2', 'text' => 'new_test_text_2']);
+        $response = $this->actingAs($user)->put("/articles/{$id}", [
+                                                                'title_ru' => 'new_test_title_2',
+                                                                'text_ru' => 'new_test_text_2',
+                                                                'title_by' => 'new_test_title_2',
+                                                                'text_by' => 'new_test_text_2',
+                                                                'title_en' => 'new_test_title_2',
+                                                                'text_en' => 'new_test_text_2'
+                                                            ]);
         $response->assertStatus(403);
     }
 
@@ -36,7 +50,14 @@ class ArticleUpdateTest extends TestCase
         $admin->assignRole('admin');
         $article = Article::factory()->create();
         $id = $article->id;
-        $response = $this->actingAs($admin)->put("/articles/{$id}", ['title' => 'new_test_title_3', 'text' => 'new_test_text_3']);
+        $response = $this->actingAs($admin)->put("/articles/{$id}", [
+                                                                    'title_ru' => 'new_test_title_3',
+                                                                    'text_ru' => 'new_test_text_3',
+                                                                    'title_by' => 'new_test_title_3',
+                                                                    'text_by' => 'new_test_text_3',
+                                                                    'title_en' => 'new_test_title_3',
+                                                                    'text_en' => 'new_test_text_3',
+                                                                    ]);
         $this->assertTrue(in_array($response->status(), [302,200]));
     }
 }

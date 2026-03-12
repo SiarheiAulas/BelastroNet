@@ -13,7 +13,16 @@ class LinkCreateTest extends TestCase
 
     public function test_guest_has_no_access(): void
     {
-        $response = $this->post('/links',['title' => 'test_title_1', 'url' => 'https://www.testlink1.com', 'description' => 'lorem ipsum test description text 1']);
+        $response = $this->post('/links',[
+                                        'url' => 'https://www.testlink1.com',
+                                        'title_ru' => 'test_title_1',
+                                        'description_ru' => 'lorem ipsum test description text 1',
+                                        'title_by' => 'test_title_1',
+                                        'description_by' => 'lorem ipsum test description text 1',
+                                        'title_en' => 'test_title_1',
+                                        'description_en' => 'lorem ipsum test description text 1'
+                                        ]);
+
         $this->assertTrue(in_array($response->status(), [302,403]));
     }
 
@@ -21,7 +30,15 @@ class LinkCreateTest extends TestCase
     {
         $user = User::factory()->create();
         $user->assignRole('user');
-        $response = $this->actingAs($user)->post('/links',['title' => 'test_title_2', 'url' => 'https://www.testlink2.com', 'description' => 'lorem ipsum  description text 2']);
+        $response = $this->actingAs($user)->post('/links',[
+                                                        'url' => 'https://www.testlink2.com',
+                                                        'title_ru' => 'test_title_2',
+                                                        'description_ru' => 'lorem ipsum  description text 2',
+                                                        'title_by' => 'test_title_2',
+                                                        'description_by' => 'lorem ipsum  description text 2',
+                                                        'title_en' => 'test_title_2',
+                                                        'description_en' => 'lorem ipsum  description text 2'
+                                                        ]);
         $response->assertStatus(403);
     }
 
@@ -29,7 +46,16 @@ class LinkCreateTest extends TestCase
     {
         $admin = User::factory()->create();
         $admin->assignRole('admin');
-        $response = $this->actingAs($admin)->post('/links',['title' => 'test_title_3', 'url' => 'https://www.testlink3.com', 'description' => 'lorem test description text 3']);
+        $response = $this->actingAs($admin)->post('/links',[
+                                                            'url' => 'https://www.testlink3.com',
+                                                            'title_ru' => 'test_title_3',
+                                                            'description_ru' => 'lorem test description text 3',
+                                                            'title_by' => 'test_title_3',
+                                                            'description_by' => 'lorem test description text 3',
+                                                            'title_en' => 'test_title_3',
+                                                            'description_en' => 'lorem test description text 3'
+                                                            ]);
+
         $this->assertTrue(in_array($response->status(), [302,200]));
     }
 }

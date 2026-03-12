@@ -12,9 +12,13 @@ class PhotoFactory extends Factory
         return [
             'type' => fake()->randomElement(['landscapes','sun_and_moon','solar_system','deepsky','sat','misc']),
             'author_id' => User::factory(),
-            'title' => fake()->sentence(),
             'storage_link' => '/storage/documents/' . fake()->uuid() . fake()->randomElement(['.jpg','.png','bmp']),
-            'description' => fake()->paragraph()
+            'title_ru' => fake()->sentence(),
+            'description_ru' => fake()->paragraph(),
+            'title_by' => fake()->sentence(),
+            'description_by' => fake()->paragraph(),
+            'title_en' => fake()->sentence(),
+            'description_en' => fake()->paragraph()
         ];
     }
 }

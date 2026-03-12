@@ -18,9 +18,13 @@ class NewsResource extends JsonResource
             'id' => $this->id,
             'date_created_at' => $this->created_at->toDateString(),
             'author_name' => $this->author->name,
-            'title' => $this->title,
             'slug' => $this->slug,
-            'text' => $this->text
+            'title_ru' => $this->title_ru,
+            'text_ru' => $this->text_ru,
+            'title_by' => $this->title_by,
+            'text_by' => $this->text_by,
+            'title_en' => $this->title_en,
+            'text_en' => $this->text_en
         ];
     }
 }

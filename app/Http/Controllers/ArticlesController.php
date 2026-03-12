@@ -51,9 +51,13 @@ class ArticlesController extends Controller
 
         $article->type = $request->type;
         $article->author_id = auth()->id();
-        $article->title = $request->title;
         $article->slug = $request->slug;
-        $article->text = $request->text;
+        $article->title_ru = $request->title_ru;
+        $article->title_by = $request->title_by;
+        $article->title_en = $request->title_en;
+        $article->text_ru = $request->text_ru;
+        $article->text_by = $request->text_by;
+        $article->text_en = $request->text_en;
 
         $article->save();
 
@@ -69,9 +73,13 @@ class ArticlesController extends Controller
         $validated = $request->validated();
         
         $article->type = $request->type;    
-        $article->title = $request->title;
         $article->slug = $request->slug;
-        $article->text = $request->text;
+        $article->title_ru = $request->title_ru;
+        $article->title_by = $request->title_by;
+        $article->title_en = $request->title_en;
+        $article->text_ru = $request->text_ru;
+        $article->text_by = $request->text_by;
+        $article->text_en = $request->text_en;
 
         $article->save();
 

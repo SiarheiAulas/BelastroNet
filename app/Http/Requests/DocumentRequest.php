@@ -23,8 +23,12 @@ class DocumentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|string|max:255',
-            'description'=>'required|string',
+            'title_ru'=>'required|string|max:255',
+            'description_ru'=>'required|string',
+            'title_by'=>'required|string|max:255',
+            'description_by'=>'required|string',
+            'title_en'=>'required|string|max:255',
+            'description_en'=>'required|string',
             'file'=> [
                 Rule::requiredIf($this->isMethod('POST')),
                 'file',

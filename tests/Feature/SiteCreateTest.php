@@ -13,7 +13,19 @@ class SiteCreateTest extends TestCase
 
     public function test_guest_has_no_access(): void
     {
-        $response = $this->post('/sites',['title' => 'test_title_1', 'author' => 'Author1','url' => 'https://www.testsite1.com', 'description' => 'lorem ipsum test description text 1']);
+        $response = $this->post('/sites',[
+                                        'url' => 'https://www.testsite1.com',
+                                        'title_ru' => 'test_title_1',
+                                        'author_ru' => 'Author1',
+                                        'description_ru' => 'lorem ipsum test description text 1',
+                                        'title_by' => 'test_title_1',
+                                        'author_by' => 'Author1',
+                                        'description_by' => 'lorem ipsum test description text 1',
+                                        'title_en' => 'test_title_1',
+                                        'author_en' => 'Author1',
+                                        'description_en' => 'lorem ipsum test description text 1'
+                                        ]);
+
         $this->assertTrue(in_array($response->status(), [302,403]));
     }
 
@@ -21,7 +33,18 @@ class SiteCreateTest extends TestCase
     {
         $user = User::factory()->create();
         $user->assignRole('user');
-        $response = $this->actingAs($user)->post('/sites',['title' => 'test_title_2', 'author' => 'Author2', 'url' => 'https://www.testsite2.com', 'description' => 'lorem ipsum  description text 2']);
+        $response = $this->actingAs($user)->post('/sites',[
+                                                        'url' => 'https://www.testsite2.com',
+                                                        'title_ru' => 'test_title_2',
+                                                        'author_ru' => 'Author2',
+                                                        'description_ru' => 'lorem ipsum  description text 2',
+                                                        'title_by' => 'test_title_2',
+                                                        'author_by' => 'Author2',
+                                                        'description_by' => 'lorem ipsum  description text 2',
+                                                        'title_en' => 'test_title_2',
+                                                        'author_en' => 'Author2',
+                                                        'description_en' => 'lorem ipsum  description text 2'
+                                                        ]);
         $response->assertStatus(403);
     }
 
@@ -29,7 +52,18 @@ class SiteCreateTest extends TestCase
     {
         $admin = User::factory()->create();
         $admin->assignRole('admin');
-        $response = $this->actingAs($admin)->post('/sites',['title' => 'test_title_3', 'author' => 'Author3', 'url' => 'https://www.testsite3.com', 'description' => 'lorem test description text 3']);
+        $response = $this->actingAs($admin)->post('/sites',[
+                                                        'url' => 'https://www.testsite3.com',
+                                                        'title_ru' => 'test_title_3',
+                                                        'author_ru' => 'Author3',
+                                                        'description_ru' => 'lorem test description text 3',
+                                                        'title_by' => 'test_title_3',
+                                                        'author_by' => 'Author3',
+                                                        'description_by' => 'lorem test description text 3',
+                                                        'title_en' => 'test_title_3',
+                                                        'author_en' => 'Author3',
+                                                        'description_en' => 'lorem test description text 3',
+                                                        ]);
         $this->assertTrue(in_array($response->status(), [302,200]));
     }
 }

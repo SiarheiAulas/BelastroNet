@@ -16,10 +16,14 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('author_id')->required();
-            $table->string('title')->required();
             $table->string('url')->required();
-            $table->text('description')->required();
-            $table->fullText(['title','description']);
+            $table->string('title_ru')->required();
+            $table->text('description_ru')->required();
+            $table->string('title_by')->required();
+            $table->text('description_by')->required();
+            $table->string('title_en')->required();
+            $table->text('description_en')->required();
+            $table->fullText(['title_ru','description_ru','title_by','description_by','title_en','description_en'],'links_fulltext');
         });
     }
 

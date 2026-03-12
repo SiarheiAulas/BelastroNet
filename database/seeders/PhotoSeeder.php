@@ -15,10 +15,14 @@ class PhotoSeeder extends Seeder
     {
         Photo::create([
             'author_id'=>1,
-            'title'=>'photo1',
             'type' => 'landscapes',
-            'description'=>'test_photo_1',
-            'storage_link'=>'./img/test_example_1.jpg'
+            'storage_link'=>'./img/test_example_1.jpg',
+            'title_ru'=>'photo1',
+            'description_ru'=>'test_photo_1',
+            'title_by'=>'photo1',
+            'description_by'=>'test_photo_1',
+            'title_en'=>'photo1',
+            'description_en'=>'test_photo_1',
         ]);
 
         Photo::factory()->count(5)->create(['author_id' => 2]);

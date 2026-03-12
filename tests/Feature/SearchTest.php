@@ -33,13 +33,88 @@ class SearchTest extends TestCase
     {
         $user = User::factory()->create();
         
-        $article = Article::create(['author_id' => $user->id,'type' => 'workshop', 'title' => 'test_title', 'slug' => 'test_slug_for_article', 'text' => 'test more items, test item 1, new tests for project testing']);
-        $news = News::create(['author_id' => $user->id,'title' => 'test_title_for_news', 'slug' => 'test_slug_for_news', 'text' => ' test news. it is a perfect test for test item 1 and 2.']);
-        $site = Site::create(['author_id' => $user->id,'title' => 'test item 1 site', 'author' => 'Test Author', 'url' => 'https://www.test.com', 'description' => 'Test site to test some items']);
-        $link = Link::create(['author_id' => $user->id,'title' => 'test item 1 external link', 'url' => 'https://test.belastro.net', 'description' => 'Test item 1 site at belastro.net project']);
-        $document = Document::create(['author_id' => $user->id,'title' => 'test doc title', 'description' => 'test item 1 photo', 'storage_link' =>'/storage/public/test.pdf']);
-        $photo = Photo::create(['author_id' => $user->id,'type' => 'sun_and_moon', 'title' => 'test item 1 photo title', 'description' => 'test photo 1', 'storage_link' =>'/storage/public/test.jpg']);
-        $video = Video::create(['author_id' => $user->id,'type' => 'sun_and_moon', 'title' => 'test title for video', 'description' => 'test item 1 vide_0', 'storage_link' =>'/storage/public/test.avi']);
+        $article = Article::create([
+                                'author_id' => $user->id,
+                                'type' => 'workshop',
+                                'slug' => 'test_slug_for_article',
+                                'title_ru' => 'test_title',
+                                'text_ru' => 'test more items, test item 1, new tests for project testing',
+                                'title_by' => 'test_title',
+                                'text_by' => 'test more items, test item 1, new tests for project testing',
+                                'title_en' => 'test_title',
+                                'text_en' => 'test more items, test item 1, new tests for project testing'
+                                ]);
+
+        $news = News::create([
+                            'author_id' => $user->id,
+                            'slug' => 'test_slug_for_news',
+                            'title_ru' => 'test_title_for_news',
+                            'text_ru' => ' test news. it is a perfect test for test item 1 and 2.',
+                            'title_by' => 'test_title_for_news',
+                            'text_by' => ' test news. it is a perfect test for test item 1 and 2.',
+                            'title_en' => 'test_title_for_news',
+                            'text_en' => ' test news. it is a perfect test for test item 1 and 2.'
+                            ]);
+
+        $site = Site::create([
+                            'author_id' => $user->id,
+                            'url' => 'https://www.test.com',
+                            'title_ru' => 'test item 1 site',
+                            'author_ru' => 'Test Author',
+                            'description_ru' => 'Test site to test some items',
+                            'title_by' => 'test item 1 site',
+                            'author_by' => 'Test Author',
+                            'description_by' => 'Test site to test some items',
+                            'title_en' => 'test item 1 site',
+                            'author_en' => 'Test Author',
+                            'description_en' => 'Test site to test some items'
+                            ]);
+
+        $link = Link::create([
+                            'author_id' => $user->id,
+                            'url' => 'https://test.belastro.net',
+                            'title_ru' => 'test item 1 external link',
+                            'description_ru' => 'Test item 1 site at belastro.net project',
+                            'title_by' => 'test item 1 external link',
+                            'description_by' => 'Test item 1 site at belastro.net project',
+                            'title_en' => 'test item 1 external link',
+                            'description_en' => 'Test item 1 site at belastro.net project',
+                            ]);
+
+        $document = Document::create([
+                                    'author_id' => $user->id,
+                                    'storage_link' =>'/storage/public/test.pdf',
+                                    'title_ru' => 'test doc title',
+                                    'description_ru' => 'test item 1 photo',
+                                    'title_by' => 'test doc title',
+                                    'description_by' => 'test item 1 photo',
+                                    'title_en' => 'test doc title',
+                                    'description_en' => 'test item 1 photo'
+                                    ]);
+
+        $photo = Photo::create([
+                            'author_id' => $user->id,
+                            'type' => 'sun_and_moon',
+                            'storage_link' =>'/storage/public/test.jpg',
+                            'title_ru' => 'test item 1 photo title',
+                            'description_ru' => 'test photo 1',
+                            'title_by' => 'test item 1 photo title',
+                            'description_by' => 'test photo 1',
+                            'title_en' => 'test item 1 photo title',
+                            'description_en' => 'test photo 1'
+                            ]);
+
+        $video = Video::create([
+                                'author_id' => $user->id,
+                                'type' => 'sun_and_moon',
+                                'storage_link' =>'/storage/public/test.avi',
+                                'title_ru' => 'test title for video',
+                                'description_ru' => 'test item 1 vide_0',
+                                'title_by' => 'test title for video',
+                                'description_by' => 'test item 1 vide_0',
+                                'title_en' => 'test title for video',
+                                'description_en' => 'test item 1 vide_0',
+                                ]);
 
         $response = $this->get('/search?search=test');
 
@@ -64,13 +139,86 @@ class SearchTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $article = Article::create(['author_id' => $user->id,'type' => 'workshop', 'title' => 'test_title', 'slug' => 'test_slug_for_article', 'text' => 'test more items, test item 1, new tests for project testing']);
-        $news = News::create(['author_id' => $user->id,'title' => 'test_title_for_news', 'slug' => 'test_slug_for_news', 'text' => ' test news. it is a perfect test for test item 1 and 2.']);
-        $site = Site::create(['author_id' => $user->id,'title' => 'test item 1 site', 'author' => 'Test Author', 'url' => 'https://www.test.com', 'description' => 'Test site to test some items']);
-        $link = Link::create(['author_id' => $user->id,'title' => 'test item 1 external link', 'url' => 'https://test.belastro.net', 'description' => 'Test item 1 site at belastro.net project']);
-        $document = Document::create(['author_id' => $user->id,'title' => 'test doc title', 'description' => 'test item 1', 'storage_link' =>'/storage/public/test.pdf']);
-        $photo = Photo::create(['author_id' => $user->id,'type' => 'sun_and_moon', 'title' => 'test item 1 photo title', 'description' => 'test photo 1', 'storage_link' =>'/storage/public/test.jpg']);
-        $video = Video::create(['author_id' => $user->id,'type' => 'sun_and_moon', 'title' => 'test title for video', 'description' => 'test item 1 vide_0', 'storage_link' =>'/storage/public/test.avi']);
+        $article = Article::create([
+                                    'author_id' => $user->id,
+                                    'type' => 'workshop',
+                                    'slug' => 'test_slug_for_article',
+                                    'title_ru' => 'test_title',
+                                    'text_ru' => 'test more items, test item 1, new tests for project testing',
+                                    'title_by' => 'test_title',
+                                    'text_by' => 'test more items, test item 1, new tests for project testing',
+                                    'title_en' => 'test_title',
+                                    'text_en' => 'test more items, test item 1, new tests for project testing'
+                                    ]);
+        $news = News::create([
+                            'author_id' => $user->id,
+                            'slug' => 'test_slug_for_news',
+                            'title_ru' => 'test_title_for_news',
+                            'text_ru' => ' test news. it is a perfect test for test item 1 and 2.',
+                            'title_by' => 'test_title_for_news',
+                            'text_by' => ' test news. it is a perfect test for test item 1 and 2.',
+                            'title_en' => 'test_title_for_news',
+                            'text_en' => ' test news. it is a perfect test for test item 1 and 2.',
+                            ]);
+
+        $site = Site::create(['author_id' => $user->id,
+                            'url' => 'https://www.test.com',
+                            'title_ru' => 'test item 1 site',
+                            'author_ru' => 'Test Author',
+                            'description_ru' => 'Test site to test some items',
+                            'title_by' => 'test item 1 site',
+                            'author_by' => 'Test Author',
+                            'description_by' => 'Test site to test some items',
+                            'title_en' => 'test item 1 site',
+                            'author_en' => 'Test Author',
+                            'description_en' => 'Test site to test some items'
+                            ]);
+
+        $link = Link::create([
+                            'author_id' => $user->id,
+                            'url' => 'https://test.belastro.net',
+                            'title_ru' => 'test item 1 external link',
+                            'description_ru' => 'Test item 1 site at belastro.net project',
+                            'title_by' => 'test item 1 external link',
+                            'description_by' => 'Test item 1 site at belastro.net project',
+                            'title_en' => 'test item 1 external link',
+                            'description_en' => 'Test item 1 site at belastro.net project',
+                            ]);
+
+        $document = Document::create([
+                                    'author_id' => $user->id,
+                                    'storage_link' =>'/storage/public/test.pdf',
+                                    'title_ru' => 'test doc title',
+                                    'description_ru' => 'test item 1',
+                                    'title_by' => 'test doc title',
+                                    'description_by' => 'test item 1',
+                                    'title_en' => 'test doc title',
+                                    'description_en' => 'test item 1',
+                                    ]);
+
+        $photo = Photo::create([
+                            'author_id' => $user->id,
+                            'type' => 'sun_and_moon',
+                            'storage_link' =>'/storage/public/test.jpg',
+                            'title_ru' => 'test item 1 photo title',
+                            'description_ru' => 'test photo 1',
+                            'title_by' => 'test item 1 photo title',
+                            'description_by' => 'test photo 1',
+                            'title_en' => 'test item 1 photo title',
+                            'description_en' => 'test photo 1',
+                            ]);
+
+        $video = Video::create([
+                            'author_id' => $user->id,
+                            'type' => 'sun_and_moon',
+                            'storage_link' =>'/storage/public/test.avi',
+                            'title_ru' => 'test title for video',
+                            'description_ru' => 'test item 1 vide_0',
+                            'title_by' => 'test title for video',
+                            'description_by' => 'test item 1 vide_0',
+                            'title_en' => 'test title for video',
+                            'description_en' => 'test item 1 vide_0',
+                            ]);
         
         $response = $this->get('/search?search=test+fake+string');
 

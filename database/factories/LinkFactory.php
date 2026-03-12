@@ -11,9 +11,13 @@ class LinkFactory extends Factory
     {
         return [
             'author_id' => User::factory(),
-            'title'=> fake()->sentence(),
             'url'=> fake()->unique()->url(),
-            'description' => fake()->paragraph()
+            'title_ru'=> fake()->sentence(),
+            'description_ru' => fake()->paragraph(),
+            'title_by'=> fake()->sentence(),
+            'description_by' => fake()->paragraph(),
+            'title_en'=> fake()->sentence(),
+            'description_en' => fake()->paragraph()
         ];
     }
 }

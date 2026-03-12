@@ -15,10 +15,16 @@ class SiteSeeder extends Seeder
     {
         Site::create([
             'author_id'=>1,
-            'author'=>'test_author',
-            'title'=>'site_1',
             'url'=>'https://example1.belastro.net',
-            'description'=>'lorem ipsum example 1'
+            'author_ru'=>'test_author',
+            'title_ru'=>'site_1',
+            'description_ru'=>'lorem ipsum example 1',
+            'author_by'=>'test_author',
+            'title_by'=>'site_1',
+            'description_by'=>'lorem ipsum example 1',
+            'author_en'=>'test_author',
+            'title_en'=>'site_1',
+            'description_en'=>'lorem ipsum example 1'
         ]);
         
         Site::factory()->count(5)->create(['author_id' => 1]);

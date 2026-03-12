@@ -14,14 +14,18 @@ class Article extends Model
 {
     use HasFactory, LogsActivity, SoftDeletes, HasAuthor, Searchable;
 
-    protected $fillable = ['type','author_id','title','slug','text'];
+    protected $fillable = ['type','author_id','slug','title_ru','text_ru','title_by','text_by','title_en','text_en'];
 
-    #[SearchUsingFullText(['title', 'text'])]
+    #[SearchUsingFullText(['title_ru','text_ru','title_by','text_by','title_en','text_en'])]
     public function toSearchableArray(){
         
         $array = [
-            'title' => $this->title,
-            'text' => $this->text
+            'title_ru' => $this->title_ru,
+            'text_ru' => $this->text_ru,
+            'title_by' => $this->title_by,
+            'text_by' => $this->text_by,
+            'title_en' => $this->title_en,
+            'text_en' => $this->text_en
         ];
         
         return $array;

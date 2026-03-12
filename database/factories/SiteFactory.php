@@ -11,10 +11,16 @@ class SiteFactory extends Factory
     {
         return [
             'author_id' => User::factory(),
-            'author' => fake()->name(), 
-            'title'=> fake()->sentence(),
             'url'=> fake()->unique()->url(),
-            'description' => fake()->paragraph()
+            'author_ru' => fake()->name(), 
+            'title_ru'=> fake()->sentence(),
+            'description_ru' => fake()->paragraph(),
+            'author_by' => fake()->name(), 
+            'title_by'=> fake()->sentence(),
+            'description_by' => fake()->paragraph(),
+            'author_en' => fake()->name(), 
+            'title_en'=> fake()->sentence(),
+            'description_en' => fake()->paragraph()
         ];
     }
 }

@@ -18,9 +18,13 @@ class DocumentResource extends JsonResource
             'id' => $this->id,
             'date_created_at' => $this->created_at->toDateString(),
             'author_name' => $this->author->name,
-            'title' => $this->title,
-            'description' => $this->description,
-            'storage_link' => $this->storage_link
+            'storage_link' => $this->storage_link,
+            'title_ru' => $this->title_ru,
+            'description_ru' => $this->description_ru,
+            'title_by' => $this->title_by,
+            'description_by' => $this->description_by,
+            'title_en' => $this->title_en,
+            'description_en' => $this->description_en
         ];
     }
 }

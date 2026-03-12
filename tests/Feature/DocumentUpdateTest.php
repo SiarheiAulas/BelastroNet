@@ -16,7 +16,15 @@ class DocumentUpdateTest extends TestCase
     {
         $document = Document::factory()->create();
         $id = $document->id;
-        $response = $this->put("/documents/{$id}", ['title' => 'new_test_title_1', 'description' => 'new test description 1']);
+        $response = $this->put("/documents/{$id}", [
+                                                    'title_ru' => 'new_test_title_1',
+                                                    'description_ru' => 'new test description 1',
+                                                    'title_by' => 'new_test_title_1',
+                                                    'description_by' => 'new test description 1',
+                                                    'title_en' => 'new_test_title_1',
+                                                    'description_en' => 'new test description 1'
+                                                    ]);
+
         $this->assertTrue(in_array($response->status(), [302,403]));
     }
 
@@ -26,7 +34,14 @@ class DocumentUpdateTest extends TestCase
         $user->assignRole('user');
         $document = Document::factory()->create();
         $id = $document->id;
-        $response = $this->actingAs($user)->put("/documents/{$id}", ['title' => 'new_test_title_2', 'description' => 'new test description 2']);
+        $response = $this->actingAs($user)->put("/documents/{$id}", [
+                                                                    'title_ru' => 'new_test_title_2',
+                                                                    'description_ru' => 'new test description 2',
+                                                                    'title_by' => 'new_test_title_2',
+                                                                    'description_by' => 'new test description 2',
+                                                                    'title_en' => 'new_test_title_2',
+                                                                    'description_en' => 'new test description 2',
+                                                                    ]);
         $response->assertStatus(403);
     }
 
@@ -36,7 +51,14 @@ class DocumentUpdateTest extends TestCase
         $admin->assignRole('admin');
         $document = Document::factory()->create();
         $id = $document->id;
-        $response = $this->actingAs($admin)->put("/documents/{$id}", ['title' => 'new_test_title_3', 'description' => 'new test description 3']);
+        $response = $this->actingAs($admin)->put("/documents/{$id}", [
+                                                                    'title_ru' => 'new_test_title_3',
+                                                                    'description_ru' => 'new test description 3',
+                                                                    'title_by' => 'new_test_title_3',
+                                                                    'description_by' => 'new test description 3',
+                                                                    'title_en' => 'new_test_title_3',
+                                                                    'description_en' => 'new test description 3'
+                                                                    ]);
         $this->assertTrue(in_array($response->status(), [302,200]));
     }
 }

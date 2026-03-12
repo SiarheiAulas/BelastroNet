@@ -31,10 +31,16 @@ class SitesController extends Controller
         $site = new Site;
 
         $site->author_id = auth()->id();
-        $site->author = $request->author;
-        $site->title = $request->title;
+        $site->author_ru = $request->author_ru;
+        $site->author_by = $request->author_by;
+        $site->author_en = $request->author_en;
+        $site->title_ru = $request->title_ru;
+        $site->title_by = $request->title_by;
+        $site->title_en = $request->title_en;
+        $site->description_ru = $request->description_ru;
+        $site->description_by = $request->description_by;
+        $site->description_en = $request->description_en;
         $site->url = $request->url;
-        $site->description = $request->description;
 
         $site->save();
 
@@ -50,10 +56,16 @@ class SitesController extends Controller
 
         $validated = $request->validated();
         
-        $site->author = $request->author;
-        $site->title = $request->title;
+        $site->author_ru = $request->author_ru;
+        $site->author_by = $request->author_by;
+        $site->author_en = $request->author_en;
+        $site->title_ru = $request->title_ru;
+        $site->title_by = $request->title_by;
+        $site->title_en = $request->title_en;
+        $site->description_ru = $request->description_ru;
+        $site->description_by = $request->description_by;
+        $site->description_en = $request->description_en;
         $site->url = $request->url;
-        $site->description = $request->description;
 
         $site->save();
 

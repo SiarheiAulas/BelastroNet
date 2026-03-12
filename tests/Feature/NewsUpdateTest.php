@@ -16,7 +16,16 @@ class NewsUpdateTest extends TestCase
     {
         $news = News::factory()->create();
         $id = $news->id;
-        $response = $this->put("/news/{$id}", ['title' => 'new_test_title_1', 'slug' => 'new_test_slug_1', 'text' => 'new_test_text_1']);
+        $response = $this->put("/news/{$id}", [
+                                            'slug' => 'new_test_slug_1',
+                                            'title_ru' => 'new_test_title_1',
+                                            'text_ru' => 'new_test_text_1',
+                                            'title_by' => 'new_test_title_1',
+                                            'text_by' => 'new_test_text_1',
+                                            'title_en' => 'new_test_title_1',
+                                            'text_en' => 'new_test_text_1'
+                                            ]);
+
         $this->assertTrue(in_array($response->status(), [302,403]));
     }
 
@@ -26,7 +35,15 @@ class NewsUpdateTest extends TestCase
         $user->assignRole('user');
         $news = News::factory()->create();
         $id = $news->id;
-        $response = $this->actingAs($user)->put("/news/{$id}", ['title' => 'new_test_title_2', 'slug' => 'new_test_slug_2', 'text' => 'new_test_text_2']);
+        $response = $this->actingAs($user)->put("/news/{$id}", [
+                                                                'slug' => 'new_test_slug_2',
+                                                                'text_ru' => 'new_test_text_2',
+                                                                'title_ru' => 'new_test_title_2',
+                                                                'text_by' => 'new_test_text_2',
+                                                                'title_by' => 'new_test_title_2',
+                                                                'text_en' => 'new_test_text_2',
+                                                                'title_en' => 'new_test_title_2'
+                                                                ]);
         $response->assertStatus(403);
     }
 
@@ -36,7 +53,16 @@ class NewsUpdateTest extends TestCase
         $admin->assignRole('admin');
         $news = News::factory()->create();
         $id = $news->id;
-        $response = $this->actingAs($admin)->put("/news/{$id}", ['title' => 'new_test_title_3', 'slug' => 'new_test_slug_3', 'text' => 'new_test_text_3']);
+        $response = $this->actingAs($admin)->put("/news/{$id}", [
+                                                                'slug' => 'new_test_slug_3',
+                                                                'title_ru' => 'new_test_title_3',
+                                                                'text_ru' => 'new_test_text_3',
+                                                                'title_by' => 'new_test_title_3',
+                                                                'text_by' => 'new_test_text_3',
+                                                                'title_en' => 'new_test_title_3',
+                                                                'text_en' => 'new_test_text_3'
+                                                                ]);
+
         $this->assertTrue(in_array($response->status(), [302,200]));
     }
 }

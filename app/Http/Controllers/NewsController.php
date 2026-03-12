@@ -37,9 +37,13 @@ class NewsController extends Controller
         $news = new News;
 
         $news->author_id = auth()->id();
-        $news->title = $request->title;
         $news->slug = $request->slug;
-        $news->text = $request->text;
+        $news->title_ru = $request->title_ru;
+        $news->title_by = $request->title_by;
+        $news->title_en = $request->title_en;
+        $news->text_ru = $request->text_ru;
+        $news->text_by = $request->text_by;
+        $news->text_en = $request->text_en;
 
         $news->save();
 
@@ -54,9 +58,13 @@ class NewsController extends Controller
 
         $validated = $request->validated();
         
-        $news->title = $request->title;
         $news->slug = $request->slug;
-        $news->text = $request->text;
+        $news->title_ru = $request->title_ru;
+        $news->title_by = $request->title_by;
+        $news->title_en = $request->title_en;
+        $news->text_ru = $request->text_ru;
+        $news->text_by = $request->text_by;
+        $news->text_en = $request->text_en;
 
         $news->save();
 

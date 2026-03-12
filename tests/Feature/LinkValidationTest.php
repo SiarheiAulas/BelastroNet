@@ -17,12 +17,16 @@ class LinkValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
-            //'title' => 'test_title_1',
             'url' => 'https://www.testurl1.net',
-            'description' => 'test description 1'
+            //'title_ru' => 'test_title_1',
+            'description_ru' => 'test description 1',
+            'title_by' => 'test_title_1',
+            'description_by' => 'test description 1',
+            'title_en' => 'test_title_1',
+            'description_en' => 'test description 1'
             ]);
 
-        $response->assertSessionHasErrors('title');
+        $response->assertSessionHasErrors('title_ru');
     }
 
     public function test_title_string(): void
@@ -30,12 +34,16 @@ class LinkValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
-            'title' => 123,
             'url' => 'https://www.testurl_2.com',
-            'description' => 'test description 2'
+            'title_ru' => 123,
+            'description_ru' => 'test description 2',
+            'title_by' => 'test_title_2',
+            'description_by' => 'test description 2',
+            'title_en' => 'test_title_2',
+            'description_en' => 'test description 2'
             ]);
 
-        $response->assertSessionHasErrors('title');
+        $response->assertSessionHasErrors('title_ru');
     }
     
     public function test_url_required(): void
@@ -43,9 +51,13 @@ class LinkValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
-            'title' => 'test_title_3',
             //'url' => 'https://www.testurl_3.com',
-            'description' => 'test description 3'
+            'title_ru' => 'test_title_3',
+            'description_ru' => 'test description 3',
+            'title_by' => 'test_title_3',
+            'description_by' => 'test description 3',
+            'title_en' => 'test_title_3',
+            'description_en' => 'test description 3',
             ]);
 
         $response->assertSessionHasErrors('url');
@@ -57,14 +69,22 @@ class LinkValidationTest extends TestCase
         $user->assignRole('admin');
         $link = Link::create([
             'author_id' => $user->id,
-            'title' => 'test_title_4',
             'url' => 'https://www.test_url.by',
-            'description' => 'test description 4'
+            'title_ru' => 'test_title_4',
+            'description_ru' => 'test description 4',
+            'title_by' => 'test_title_4',
+            'description_by' => 'test description 4',
+            'title_en' => 'test_title_4',
+            'description_en' => 'test description 4'
             ]);
         $response = $this->actingAs($user)->post('/links', [
-            'title' => 'test_title_5',
             'url' => 'https://www.test_url.by',
-            'description' => 'test description 5'
+            'title_ru' => 'test_title_5',
+            'description_ru' => 'test description 5',
+            'title_by' => 'test_title_5',
+            'description_by' => 'test description 5',
+            'title_en' => 'test_title_5',
+            'description_en' => 'test description 5'
             ]);
 
         $response->assertSessionHasErrors('url');
@@ -75,12 +95,16 @@ class LinkValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
-            'title' => 'test_title_6',
             'url' => 'https://www.test_url.by',
-            //'description' => 'test description 6'
+            'title_ru' => 'test_title_6',
+            //'description_ru' => 'test description 6',
+            'title_by' => 'test_title_6',
+            'description_by' => 'test description 6',
+            'title_en' => 'test_title_6',
+            'description_en' => 'test description 6'
             ]);
 
-        $response->assertSessionHasErrors('description');
+        $response->assertSessionHasErrors('description_ru');
     }
 
     public function test_description_string(): void
@@ -88,11 +112,15 @@ class LinkValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
-            'title' => 'test_title_7',
             'url' => 'https://www.test_url.by',
-            'description' => 123
+            'title_ru' => 'test_title_7',
+            'description_ru' => 123,
+            'title_by' => 'test_title_7',
+            'description_by' => 'test description 7',
+            'title_en' => 'test_title_7',
+            'description_en' => 'test description 7'
             ]);
 
-        $response->assertSessionHasErrors('description');
+        $response->assertSessionHasErrors('description_ru');
     }
 }

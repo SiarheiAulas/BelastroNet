@@ -15,10 +15,14 @@ class VideoSeeder extends Seeder
     {
         Video::create([
             'author_id'=>1,
-            'title'=>'video1',
             'type' =>'events',
-            'description'=>'test_video_1',
-            'storage_link'=>'./movie/test_example_1.mp4'
+            'storage_link'=>'./movie/test_example_1.mp4',
+            'title_ru'=>'video1',
+            'description_ru'=>'test_video_1',
+            'title_by'=>'video1',
+            'description_by'=>'test_video_1',
+            'title_en'=>'video1',
+            'description_en'=>'test_video_1',
         ]);
 
         Video::factory()->count(5)->create(['author_id' => 2]);

@@ -24,8 +24,12 @@ class VideoRequest extends FormRequest
     {
         return [
             'type'=>'required|in:landscapes,sun_and_moon,solar_system,events,misc',
-            'title'=>'required|string|max:255',
-            'description'=>'required|string',
+            'title_ru'=>'required|string|max:255',
+            'description_ru'=>'required|string',
+            'title_by'=>'required|string|max:255',
+            'description_by'=>'required|string',
+            'title_en'=>'required|string|max:255',
+            'description_en'=>'required|string',
             'file'=>[
                     Rule::requiredIf($this->isMethod('POST')),
                     'file',

@@ -17,12 +17,16 @@ class NewsValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/news', [
-            //'title' => 'test_title_1',
             'slug' => 'test_slug_1',
-            'text' => 'test_text_1'
+            //'title_ru' => 'test_title_1',
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
-        $response->assertSessionHasErrors('title');
+        $response->assertSessionHasErrors('title_ru');
     }
 
     public function test_title_string(): void
@@ -30,12 +34,16 @@ class NewsValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/news', [
-            'title' => 123,
             'slug' => 'test_slug_2',
-            'text' => 'test_text_2'
+            'title_ru' => 123,
+            'text_ru' => 'test_text_2',
+            'title_by' => 'test_title_2',
+            'text_by' => 'test_text_2',
+            'title_en' => 'test_title_2',
+            'text_en' => 'test_text_2'
             ]);
 
-        $response->assertSessionHasErrors('title');
+        $response->assertSessionHasErrors('title_ru');
     }
     
     public function test_slug_required(): void
@@ -43,9 +51,13 @@ class NewsValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/news', [
-            'title' => 'test_title_3',
             //'slug' => 'test_slug_3',
-            'text' => 'test_text_3'
+            'title_ru' => 'test_title_3',
+            'text_ru' => 'test_text_3',
+            'title_by' => 'test_title_3',
+            'text_by' => 'test_text_3',
+            'title_en' => 'test_title_3',
+            'text_en' => 'test_text_3'
             ]);
 
         $response->assertSessionHasErrors('slug');
@@ -56,9 +68,13 @@ class NewsValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/news', [
-            'title' => 'test_title_4',
             'slug' => 'test)%^',
-            'text' => 'test_text_4'
+            'title_ru' => 'test_title_4',
+            'text_ru' => 'test_text_4',
+            'title_by' => 'test_title_4',
+            'text_by' => 'test_text_4',
+            'title_en' => 'test_title_4',
+            'text_en' => 'test_text_4'
             ]);
 
         $response->assertSessionHasErrors('slug');
@@ -69,9 +85,13 @@ class NewsValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/news', [
-            'title' => 'test_title_5',
             'slug' => 'test_slug_5_test_slug_5_test_slug_5_test_slug_5_test_slug_5_test_slug_5',
-            'text' => 'test_text_5'
+            'title_ru' => 'test_title_5',
+            'text_ru' => 'test_text_5',
+            'title_by' => 'test_title_5',
+            'text_by' => 'test_text_5',
+            'title_en' => 'test_title_5',
+            'text_en' => 'test_text_5'
             ]);
 
         $response->assertSessionHasErrors('slug');
@@ -83,14 +103,23 @@ class NewsValidationTest extends TestCase
         $user->assignRole('admin');
         $news = News::create([
             'author_id' => $user->id,
-            'title' => 'test_title_0',
             'slug' => 'test_slug',
-            'text' => 'test_text_0'
+            'title_ru' => 'test_title_0',
+            'text_ru' => 'test_text_0',
+            'title_by' => 'test_title_0',
+            'text_by' => 'test_text_0',
+            'title_en' => 'test_title_0',
+            'text_en' => 'test_text_0'
             ]);
+
         $response = $this->actingAs($user)->post('/news', [
-            'title' => 'test_title_7',
             'slug' => 'test_slug',
-            'text' => 'test_text_7'
+            'title_ru' => 'test_title_7',
+            'text_ru' => 'test_text_7',
+            'title_by' => 'test_title_7',
+            'text_by' => 'test_text_7',
+            'title_en' => 'test_title_7',
+            'text_en' => 'test_text_7'
             ]);
 
         $response->assertSessionHasErrors('slug');
@@ -101,12 +130,16 @@ class NewsValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/news', [
-            'title' => 'test_title_8',
             'slug' => 'test_slug_8',
-            //'text' => 'test_text_8'
+            'title_ru' => 'test_title_8',
+            //'text_ru' => 'test_text_8',
+            'title_by' => 'test_title_8',
+            'text_by' => 'test_text_8',
+            'title_en' => 'test_title_8',
+            'text_en' => 'test_text_8'
             ]);
 
-        $response->assertSessionHasErrors('text');
+        $response->assertSessionHasErrors('text_ru');
     }
 
     public function test_text_string(): void
@@ -114,11 +147,15 @@ class NewsValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/news', [
-            'title' => 'test_title_9',
             'slug' => 'test_slug_9',
-            'text' => 123
+            'title_ru' => 'test_title_9',
+            'text_ru' => 123,
+            'title_by' => 'test_title_9',
+            'text_by' => 'test_text_9',
+            'title_en' => 'test_title_9',
+            'text_en' => 'test_text_9'
             ]);
 
-        $response->assertSessionHasErrors('text');
+        $response->assertSessionHasErrors('text_ru');
     }
 }

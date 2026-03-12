@@ -61,8 +61,12 @@ class PhotosController extends Controller
 
         $photo->type = $request->type;
         $photo->author_id = auth()->id();
-        $photo->title = $request->title;
-        $photo->description = $request->description;
+        $photo->title_ru = $request->title_ru;
+        $photo->title_by = $request->title_by;
+        $photo->title_en = $request->title_en;
+        $photo->description_ru = $request->description_ru;
+        $photo->description_by = $request->description_by;
+        $photo->description_en = $request->description_en;
 
         $uploaded_photo = $request->file('file');
         $photo->storage_link = $this->upload_file($uploaded_photo);
@@ -81,8 +85,12 @@ class PhotosController extends Controller
         $validated = $request->validated();
         
         $photo->type = $request->type;
-        $photo->title = $request->title;
-        $photo->description = $request->description;
+        $photo->title_ru = $request->title_ru;
+        $photo->title_by = $request->title_by;
+        $photo->title_en = $request->title_en;
+        $photo->description_ru = $request->description_ru;
+        $photo->description_by = $request->description_by;
+        $photo->description_en = $request->description_en;
 
         if($request->hasFile('file')){
             $uploaded_photo = $request->file('file');

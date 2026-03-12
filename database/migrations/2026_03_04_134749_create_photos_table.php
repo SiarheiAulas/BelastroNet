@@ -17,10 +17,14 @@ return new class extends Migration
             $table->softDeletes();
             $table->set('type', ['landscapes','sun_and_moon','solar_system','deepsky','sat','misc']);
             $table->foreignId('author_id')->required();
-            $table->string('title')->required();
             $table->string('storage_link')->required();
-            $table->text('description')->required();
-            $table->fullText(['title','description']);
+            $table->string('title_ru')->required();
+            $table->text('description_ru')->required();
+            $table->string('title_by')->required();
+            $table->text('description_by')->required();
+            $table->string('title_en')->required();
+            $table->text('description_en')->required();
+            $table->fullText(['title_ru','description_ru','title_by','description_by','title_en','description_en'], 'photos_fulltext');
         });
     }
 

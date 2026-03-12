@@ -15,9 +15,13 @@ class LinkSeeder extends Seeder
     {
         Link::create([
             'author_id'=>1,
-            'title'=>'external_site_1',
             'url'=>'http://example1.com',
-            'description'=>'lorem ipsum example 1'
+            'title_ru'=>'external_site_1',
+            'description_ru'=>'lorem ipsum example 1',
+            'title_by'=>'external_site_1',
+            'description_by'=>'lorem ipsum example 1',
+            'title_en'=>'external_site_1',
+            'description_en'=>'lorem ipsum example 1'
         ]);
 
         Link::factory()->count(5)->create(['author_id' => 1]);

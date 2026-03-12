@@ -14,14 +14,18 @@ class Photo extends Model
 {
     use HasFactory, LogsActivity, SoftDeletes, HasAuthor, Searchable;
 
-    protected $fillable = ['type', 'author_id','title','storage_link','description'];
+    protected $fillable = ['type', 'author_id','storage_link','title_ru','description_ru','title_by','description_by','title_en','description_en'];
 
-    #[SearchUsingFullText(['title', 'description'])]
+    #[SearchUsingFullText(['title_ru','description_ru','title_by','description_by','title_en','description_en'])]
     public function toSearchableArray(){
         
         $array = [
-            'title' => $this->title,
-            'description' => $this->description
+            'title_ru' => $this->title_ru,
+            'description_ru' => $this->description_ru,
+            'title_by' => $this->title_by,
+            'description_by' => $this->description_by,
+            'title_en' => $this->title_en,
+            'description_en' => $this->description_en,
         ];
         
         return $array;

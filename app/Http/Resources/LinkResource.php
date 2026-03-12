@@ -16,9 +16,13 @@ class LinkResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
             'url' => $this->url,
-            'description' => $this->description
+            'title_ru' => $this->title_ru,
+            'description_ru' => $this->description_ru,
+            'title_by' => $this->title_by,
+            'description_by' => $this->description_by,
+            'title_en' => $this->title_en,
+            'description_en' => $this->description_en
         ];
     }
 }

@@ -16,7 +16,16 @@ class VideoUpdateTest extends TestCase
     {
         $video = Video::factory()->create();
         $id = $video->id;
-        $response = $this->put("/videos/{$id}", ['type' => 'events', 'title' => 'test_title_1', 'description' => 'lorem ipsum test description 1']);
+        $response = $this->put("/videos/{$id}", [
+                                                'type' => 'events',
+                                                'title_ru' => 'test_title_1',
+                                                'description_ru' => 'lorem ipsum test description 1',
+                                                'title_by' => 'test_title_1',
+                                                'description_by' => 'lorem ipsum test description 1',
+                                                'title_en' => 'test_title_1',
+                                                'description_en' => 'lorem ipsum test description 1'
+                                                ]);
+
         $this->assertTrue(in_array($response->status(), [302 , 403]));
     }
 
@@ -26,7 +35,16 @@ class VideoUpdateTest extends TestCase
         $user->assignRole('user');
         $video = Video::factory()->create(['author_id' => $user->id]);
         $id = $video->id;
-        $response = $this->actingAs($user)->put("/videos/{$id}", ['type' => 'solar_system', 'title' => 'new_test_title_2', 'description' => 'new test description 2']);
+        $response = $this->actingAs($user)->put("/videos/{$id}", [
+                                                                'type' => 'solar_system',
+                                                                'title_ru' => 'new_test_title_2',
+                                                                'description_ru' => 'new test description 2',
+                                                                'title_by' => 'new_test_title_2',
+                                                                'description_by' => 'new test description 2',
+                                                                'title_en' => 'new_test_title_2',
+                                                                'description_en' => 'new test description 2'
+                                                                ]);
+
         $this->assertTrue(in_array($response->status(), [302 , 200]));
     }
 
@@ -37,7 +55,16 @@ class VideoUpdateTest extends TestCase
         $user2 = User::factory()->create();
         $video = Video::factory()->create(['author_id' => $user2->id]);
         $id = $video->id;
-        $response = $this->actingAs($user)->put("/videos/{$id}", ['type' => 'sun_and_moon', 'title' => 'new_test_title_2', 'description' => 'new test description 2']);
+        $response = $this->actingAs($user)->put("/videos/{$id}", [
+                                                                'type' => 'sun_and_moon',
+                                                                'title_ru' => 'new_test_title_2',
+                                                                'description_ru' => 'new test description 2',
+                                                                'title_by' => 'new_test_title_2',
+                                                                'description_by' => 'new test description 2',
+                                                                'title_en' => 'new_test_title_2',
+                                                                'description_en' => 'new test description 2'
+                                                                ]);
+
         $this->assertTrue(in_array($response->status(), [302 , 403]));
     }
 
@@ -47,7 +74,16 @@ class VideoUpdateTest extends TestCase
         $admin->assignRole('admin');
         $video = Video::factory()->create();
         $id = $video->id;
-        $response = $this->actingAs($admin)->put("/videos/{$id}", ['type' => 'misc', 'title' => 'new_test_title_3', 'description' => 'new test description 3']);
+        $response = $this->actingAs($admin)->put("/videos/{$id}", [
+                                                                'type' => 'misc',
+                                                                'title_ru' => 'new_test_title_3',
+                                                                'description_ru' => 'new test description 3',
+                                                                'title_by' => 'new_test_title_3',
+                                                                'description_by' => 'new test description 3',
+                                                                'title_en' => 'new_test_title_3',
+                                                                'description_en' => 'new test description 3'
+                                                                ]);
+
         $this->assertTrue(in_array($response->status(), [302 , 200]));
     }
 }

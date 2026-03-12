@@ -60,8 +60,12 @@ class VideosController extends Controller
 
         $video->type = $request->type;
         $video->author_id = auth()->id();
-        $video->title = $request->title;
-        $video->description = $request->description;
+        $video->title_ru = $request->title_ru;
+        $video->title_by = $request->title_by;
+        $video->title_en = $request->title_en;
+        $video->description_ru = $request->description_ru;
+        $video->description_by = $request->description_by;
+        $video->description_en = $request->description_en;
 
         $uploaded_video = $request->file('file');
         $video->storage_link = $this->upload_file($uploaded_video);
@@ -81,8 +85,12 @@ class VideosController extends Controller
         $validated = $request->validated();
 
         $video->type = $request->type;
-        $video->title = $request->title;
-        $video->description = $request->description;
+        $video->title_ru = $request->title_ru;
+        $video->title_by = $request->title_by;
+        $video->title_en = $request->title_en;
+        $video->description_ru = $request->description_ru;
+        $video->description_by = $request->description_by;
+        $video->description_en = $request->description_en;
 
         if($request->hasFile('file')){
             $uploaded_video = $request->file('file');

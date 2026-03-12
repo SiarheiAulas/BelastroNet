@@ -23,9 +23,13 @@ class ArticleRequest extends FormRequest
     {
         return [
             'type'=>'required|in:workshop,tricks,observations,recommendations,photo_and_video,astronews,misc',
-            'title'=>'required|string|max:255',
             'slug'=>'required|string|alpha_dash|max:50|unique:articles,slug',
-            'text'=>'required|string'
+            'title_ru'=>'required|string|max:255',
+            'text_ru'=>'required|string',
+            'title_by'=>'required|string|max:255',
+            'text_by'=>'required|string',
+            'title_en'=>'required|string|max:255',
+            'text_en'=>'required|string'
         ];
     }
 }

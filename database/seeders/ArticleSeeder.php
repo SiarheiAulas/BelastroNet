@@ -16,9 +16,13 @@ class ArticleSeeder extends Seeder
         Article::create([
             'author_id'=>1,
             'type'=>'misc',
-            'title'=>'article1',
             'slug'=>'test_article_1',
-            'text'=>'lorem ipsum dolorem sit amet'
+            'title_ru'=>'article1',
+            'text_ru'=>'lorem ipsum dolorem sit amet',
+            'title_by'=>'article1',
+            'text_by'=>'lorem ipsum dolorem sit amet',
+            'title_en'=>'article1',
+            'text_en'=>'lorem ipsum dolorem sit amet'
         ]);
 
         Article::factory()->count(5)->create(['author_id' => 1]);

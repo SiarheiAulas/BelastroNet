@@ -22,10 +22,16 @@ class SiteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|string|max:255',
-            'author'=>'required|string|max:255',
             'url'=>'required|url|unique:sites,url',
-            'description'=>'required|string'
+            'title_ru'=>'required|string|max:255',
+            'author_ru'=>'required|string|max:255',
+            'description_ru'=>'required|string',
+            'title_by'=>'required|string|max:255',
+            'author_by'=>'required|string|max:255',
+            'description_by'=>'required|string',
+            'title_en'=>'required|string|max:255',
+            'author_en'=>'required|string|max:255',
+            'description_en'=>'required|string'
         ];
     }
 }

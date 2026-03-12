@@ -18,9 +18,13 @@ class ArticleValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             //'type' => 'tricks',
-            'title' => 'test_title_1',
             'slug' => 'test_slug_1',
-            'text' => 'test_text_1'
+            'title_ru' => 'test_title_1',
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
         $response->assertSessionHasErrors('type');
@@ -32,40 +36,52 @@ class ArticleValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'test',
-            'title' => 'test_title_1',
             'slug' => 'test_slug_1',
-            'text' => 'test_text_1'
+            'title_ru' => 'test_title_1',
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
         $response->assertSessionHasErrors('type');
     }
 
-    public function test_title_required(): void
+    public function test_title_ru_required(): void
     {
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'tricks',
-            //'title' => 'test_title_1',
             'slug' => 'test_slug_1',
-            'text' => 'test_text_1'
+            //'title_ru' => 'test_title_1',
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
-        $response->assertSessionHasErrors('title');
+        $response->assertSessionHasErrors('title_ru');
     }
 
-    public function test_title_string(): void
+    public function test_title_ru_string(): void
     {
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'tricks',
-            'title' => 123,
             'slug' => 'test_slug_1',
-            'text' => 'test_text_1'
+            'title_ru' => 123,
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
-        $response->assertSessionHasErrors('title');
+        $response->assertSessionHasErrors('title_ru');
     }
     
     public function test_slug_required(): void
@@ -74,10 +90,14 @@ class ArticleValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'tricks',
-            'title' => 'test_title_1',
             //'slug' => 'test_slug_1',
-            'text' => 'test_text_1'
-            ]);
+            'title_ru' => 'test_title_1',
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
+             ]);
 
         $response->assertSessionHasErrors('slug');
     }
@@ -88,9 +108,13 @@ class ArticleValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'tricks',
-            'title' => 'test_title_1',
             'slug' => 'test)%^',
-            'text' => 'test_text_1'
+            'title_ru' => 'test_title_1',
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
         $response->assertSessionHasErrors('slug');
@@ -102,9 +126,13 @@ class ArticleValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'tricks',
-            'title' => 'test_title_1',
             'slug' => 'test_slug_1_test_slug_1_test_slug_1_test_slug_1_test_slug_1_test_slug_1',
-            'text' => 'test_text_1'
+            'title_ru' => 'test_title_1',
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
         $response->assertSessionHasErrors('slug');
@@ -117,45 +145,61 @@ class ArticleValidationTest extends TestCase
         $article = Article::create([
             'author_id' => $user->id,
             'type' => 'misc',
-            'title' => 'test_title_0',
             'slug' => 'test_slug',
-            'text' => 'test_text_0'
+            'title_ru' => 'test_title_0',
+            'text_ru' => 'test_text_0',
+            'title_by' => 'test_title_0',
+            'text_by' => 'test_text_0',
+            'title_en' => 'test_title_0',
+            'text_en' => 'test_text_0'
             ]);
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'tricks',
-            'title' => 'test_title_1',
             'slug' => 'test_slug',
-            'text' => 'test_text_1'
+            'title_ru' => 'test_title_1',
+            'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
         $response->assertSessionHasErrors('slug');
     }
 
-    public function test_text_required(): void
+    public function test_text_ru_required(): void
     {
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'tricks',
-            'title' => 'test_title_1',
             'slug' => 'test_slug_1',
-            //'text' => 'test_text_1'
+            'title_ru' => 'test_title_1',
+            //'text_ru' => 'test_text_1',
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
-        $response->assertSessionHasErrors('text');
+        $response->assertSessionHasErrors('text_ru');
     }
 
-    public function test_text_string(): void
+    public function test_text_ru_string(): void
     {
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/articles', [
             'type' => 'tricks',
-            'title' => 'test_title_1',
             'slug' => 'test_slug_1',
-            'text' => 123
+            'title_ru' => 'test_title_1',
+            'text_ru' => 123,
+            'title_by' => 'test_title_1',
+            'text_by' => 'test_text_1',
+            'title_en' => 'test_title_1',
+            'text_en' => 'test_text_1'
             ]);
 
-        $response->assertSessionHasErrors('text');
+        $response->assertSessionHasErrors('text_ru');
     }
 }

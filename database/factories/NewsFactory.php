@@ -11,9 +11,13 @@ class NewsFactory extends Factory
     {
         return [
             'author_id' => User::factory(),
-            'title' => fake()->sentence(),
             'slug' => fake()->unique()->slug,
-            'text'=> fake()->paragraph()
+            'title_ru' => fake()->sentence(),
+            'text_ru'=> fake()->paragraph(),
+            'title_by' => fake()->sentence(),
+            'text_by'=> fake()->paragraph(),
+            'title_en' => fake()->sentence(),
+            'text_en'=> fake()->paragraph()
         ];
     }
 }

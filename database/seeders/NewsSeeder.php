@@ -15,9 +15,13 @@ class NewsSeeder extends Seeder
     {
         News::create([
             'author_id'=>1,
-            'title'=>'news1',
             'slug'=>'test_news_1',
-            'text'=>'example news text 1'
+            'title_ru'=>'news1',
+            'text_ru'=>'example news text 1',
+            'title_by'=>'news1',
+            'text_by'=>'example news text 1',
+            'title_en'=>'news1',
+            'text_en'=>'example news text 1'
         ]);
 
         News::factory()->count(5)->create(['author_id' => 1]);

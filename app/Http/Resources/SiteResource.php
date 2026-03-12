@@ -16,10 +16,16 @@ class SiteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'author' => $this->author,
-            'title' => $this->title,
             'url' => $this->url,
-            'description' => $this->description
+            'author_ru' => $this->author_ru,
+            'title_ru' => $this->title_ru,
+            'description_ru' => $this->description_ru,
+            'author_by' => $this->author_by,
+            'title_by' => $this->title_by,
+            'description_by' => $this->description_by,
+            'author_en' => $this->author_en,
+            'title_en' => $this->title_en,
+            'description_en' => $this->description_en
         ];
     }
 }

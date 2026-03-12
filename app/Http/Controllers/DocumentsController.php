@@ -39,8 +39,12 @@ class DocumentsController extends Controller
         $document = new Document;
 
         $document->author_id = auth()->id();
-        $document->title = $request->title;
-        $document->description = $request->description;
+        $document->title_ru = $request->title_ru;
+        $document->title_by = $request->title_by;
+        $document->title_en = $request->title_en;
+        $document->description_ru = $request->description_ru;
+        $document->description_by = $request->description_by;
+        $document->description_en = $request->description_en;
 
         $file = $request->file('file');
         $document->storage_link = $this->upload_file($file);
@@ -64,8 +68,12 @@ class DocumentsController extends Controller
             $document->storage_link = $this->upload_file($file);
         }
 
-        $document->title = $request->title;
-        $document->description = $request->description;
+        $document->title_ru = $request->title_ru;
+        $document->title_by = $request->title_by;
+        $document->title_en = $request->title_en;
+        $document->description_ru = $request->description_ru;
+        $document->description_by = $request->description_by;
+        $document->description_en = $request->description_en;
 
         $document->save();
 

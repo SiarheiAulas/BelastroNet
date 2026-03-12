@@ -11,9 +11,13 @@ class DocumentFactory extends Factory
     {
         return [
             'author_id' => User::factory(),
-            'title' => fake()->sentence(),
             'storage_link' => '/storage/documents/' . fake()->uuid() . fake()->randomElement(['.pdf','.txt','docx']),
-            'description' => fake()->paragraph()
+            'title_ru' => fake()->sentence(),
+            'description_ru' => fake()->paragraph(),
+            'title_by' => fake()->sentence(),
+            'description_by' => fake()->paragraph(),
+            'title_en' => fake()->sentence(),
+            'description_en' => fake()->paragraph()
         ];
     }
 }
