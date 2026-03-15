@@ -14,7 +14,7 @@ class Link extends Model
 {
  	use HasFactory, LogsActivity, SoftDeletes, HasAuthor, Searchable;
 
-    protected $fillable = ['author_id','url','title_ru','description_ru','title_by','description_by','title_en','description_en'];
+    protected $fillable = ['author_id','url', 'type', 'title_ru','description_ru','title_by','description_by','title_en','description_en'];
 
 	#[SearchUsingFullText(['title_ru','description_ru','title_by','description_by','title_en','description_en'])]
     public function toSearchableArray(){

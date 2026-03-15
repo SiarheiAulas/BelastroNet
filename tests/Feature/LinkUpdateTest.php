@@ -18,6 +18,7 @@ class LinkUpdateTest extends TestCase
         $id = $link->id;
         $response = $this->put("/links/{$id}", [
                                             'url' => 'https://www.testlink-new.com',
+                                            'type' => 'forums',
                                             'description_ru' => 'new ipsum test description text 1',
                                             'title_ru' => 'new_test_title_1',
                                             'description_by' => 'new ipsum test description text 1',
@@ -37,6 +38,7 @@ class LinkUpdateTest extends TestCase
         $id = $link->id;
         $response = $this->actingAs($user)->put("/links/{$id}", [
                                                                 'url' => 'https://www.testlink-new.com',
+                                                                'type' => 'forums',
                                                                 'description_ru' => 'new ipsum description 2',
                                                                 'title_ru' => 'new_title_2',
                                                                 'description_by' => 'new ipsum description 2',
@@ -55,6 +57,7 @@ class LinkUpdateTest extends TestCase
         $id = $link->id;
         $response = $this->actingAs($admin)->put("/links/{$id}", [
                                                                 'url' => 'https://www.testlink-new.com',
+                                                                'type' => 'forums',
                                                                 'title_ru' => 'new_title_3',
                                                                 'description_ru' => 'new ipsum description 3',
                                                                 'title_by' => 'new_title_3',

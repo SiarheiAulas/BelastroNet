@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('author_id')->required();
+            $table->set('type',['belastro','other','gov','com','youtube','tg','soc','baf']);
             $table->string('url')->required();
             $table->string('author_ru')->required();
             $table->string('title_ru')->required();

@@ -15,6 +15,7 @@ class SiteSeeder extends Seeder
     {
         Site::create([
             'author_id'=>1,
+            'type' => 'belastro',
             'url'=>'https://example1.belastro.net',
             'author_ru'=>'test_author',
             'title_ru'=>'site_1',

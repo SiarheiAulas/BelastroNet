@@ -22,6 +22,7 @@ class SiteRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type'=>'required|in:belastro,other,gov,com,youtube,tg,soc,baf',
             'url'=>'required|url|unique:sites,url',
             'title_ru'=>'required|string|max:255',
             'author_ru'=>'required|string|max:255',

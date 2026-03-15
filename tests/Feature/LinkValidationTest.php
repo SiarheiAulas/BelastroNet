@@ -34,6 +34,7 @@ class LinkValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
+            'type' => 'solar',
             'url' => 'https://www.testurl_2.com',
             'title_ru' => 123,
             'description_ru' => 'test description 2',
@@ -45,12 +46,49 @@ class LinkValidationTest extends TestCase
 
         $response->assertSessionHasErrors('title_ru');
     }
+
+    public function test_type_required(): void
+    {
+        $user = User::factory()->create();
+        $user->assignRole('admin');
+        $response = $this->actingAs($user)->post('/articles', [
+            //'type' => 'news',
+            'url' => 'https://www.testurl_2.com',
+            'title_ru' => 'test_title_1',
+            'description_ru' => 'test description 2',
+            'title_by' => 'test_title_2',
+            'description_by' => 'test description 2',
+            'title_en' => 'test_title_2',
+            'description_en' => 'test description 2'
+            ]);
+
+        $response->assertSessionHasErrors('type');
+    }
+
+    public function test_type_in(): void
+    {
+        $user = User::factory()->create();
+        $user->assignRole('admin');
+        $response = $this->actingAs($user)->post('/articles', [
+            'type' => 'test',
+            'url' => 'https://www.testurl_2.com',
+            'title_ru' => 'test_title_1',
+            'description_ru' => 'test description 2',
+            'title_by' => 'test_title_2',
+            'description_by' => 'test description 2',
+            'title_en' => 'test_title_2',
+            'description_en' => 'test description 2'
+            ]);
+
+        $response->assertSessionHasErrors('type');
+    }
     
     public function test_url_required(): void
     {
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
+            'type' => 'solar',
             //'url' => 'https://www.testurl_3.com',
             'title_ru' => 'test_title_3',
             'description_ru' => 'test description 3',
@@ -69,6 +107,7 @@ class LinkValidationTest extends TestCase
         $user->assignRole('admin');
         $link = Link::create([
             'author_id' => $user->id,
+            'type' => 'solar',
             'url' => 'https://www.test_url.by',
             'title_ru' => 'test_title_4',
             'description_ru' => 'test description 4',
@@ -78,6 +117,7 @@ class LinkValidationTest extends TestCase
             'description_en' => 'test description 4'
             ]);
         $response = $this->actingAs($user)->post('/links', [
+            'type' => 'solar',
             'url' => 'https://www.test_url.by',
             'title_ru' => 'test_title_5',
             'description_ru' => 'test description 5',
@@ -95,6 +135,7 @@ class LinkValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
+            'type' => 'solar',
             'url' => 'https://www.test_url.by',
             'title_ru' => 'test_title_6',
             //'description_ru' => 'test description 6',
@@ -112,6 +153,7 @@ class LinkValidationTest extends TestCase
         $user = User::factory()->create();
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/links', [
+            'type' => 'solar',
             'url' => 'https://www.test_url.by',
             'title_ru' => 'test_title_7',
             'description_ru' => 123,

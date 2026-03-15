@@ -11,6 +11,46 @@ use App\Models\Site;
 class SiteValidationTest extends TestCase
 {
     use RefreshDatabase;
+    
+    public function test_type_required(): void
+    {
+        $user = User::factory()->create();
+        $user->assignRole('admin');
+        $response = $this->actingAs($user)->post('/articles', [
+            //'type' => 'baf',
+            'url' => 'https://www.testurl_2.com',
+            'author_ru' => 'Author1',
+            'description_ru' => 'test description 1',
+            'title_by' => 'test_title_1',
+            'author_by' => 'Author1',
+            'description_by' => 'test description 1',
+            'title_en' => 'test_title_1',
+            'author_en' => 'Author1',
+            'description_en' => 'test description 1'
+            ]);
+
+        $response->assertSessionHasErrors('type');
+    }
+
+    public function test_type_in(): void
+    {
+        $user = User::factory()->create();
+        $user->assignRole('admin');
+        $response = $this->actingAs($user)->post('/articles', [
+            'type' => 'test',
+            'url' => 'https://www.testurl_2.com',
+            'author_ru' => 'Author1',
+            'description_ru' => 'test description 1',
+            'title_by' => 'test_title_1',
+            'author_by' => 'Author1',
+            'description_by' => 'test description 1',
+            'title_en' => 'test_title_1',
+            'author_en' => 'Author1',
+            'description_en' => 'test description 1'
+            ]);
+
+        $response->assertSessionHasErrors('type');
+    }
 
     public function test_title_required(): void
     {
@@ -19,6 +59,7 @@ class SiteValidationTest extends TestCase
         $response = $this->actingAs($user)->post('/sites', [
             'url' => 'https://www.testurl1.net',
             //'title_ru' => 'test_title_1',
+            'type' => 'belastro',
             'author_ru' => 'Author1',
             'description_ru' => 'test description 1',
             'title_by' => 'test_title_1',
@@ -38,6 +79,7 @@ class SiteValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/sites', [
             'url' => 'https://www.testurl_2.com',
+            'type' => 'belastro',
             'title_ru' => 123,
             'author_ru' => 'Author2',
             'description_ru' => 'test description 2',
@@ -58,6 +100,7 @@ class SiteValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/sites', [
             //'url' => 'https://www.testurl_3.com',
+            'type' => 'belastro',
             'title_ru' => 'test_title_3',
             'author_ru' => 'Author3',
             'description_ru' => 'test description 3',
@@ -80,6 +123,7 @@ class SiteValidationTest extends TestCase
         $site = Site::create([
             'author_id' => $user->id,
             'url' => 'https://www.test_url.by',
+            'type' => 'belastro',
             'title_ru' => 'test_title_4',
             'author_ru' => 'Author4',
             'description_ru' => 'test description 4',
@@ -92,6 +136,7 @@ class SiteValidationTest extends TestCase
             ]);
         $response = $this->actingAs($user)->post('/sites', [
             'url' => 'https://www.test_url.by',
+            'type' => 'belastro',
             'title_ru' => 'test_title_5',
             'author_ru' => 'Author5',
             'description_ru' => 'test description 5',
@@ -112,6 +157,7 @@ class SiteValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/sites', [
             'url' => 'https://www.test_url.by',
+            'type' => 'belastro',
             'title_ru' => 'test_title_6',
             'author_ru' => 'Author6',
             //'description_ru' => 'test description 6',
@@ -132,6 +178,7 @@ class SiteValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/sites', [
             'url' => 'https://www.test_url.by',
+            'type' => 'belastro',
             'title_ru' => 'test_title_7',
             'author_ru' => 'Author7',
             'description_ru' => 123,
@@ -152,6 +199,7 @@ class SiteValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/sites', [
             'url' => 'https://www.test_url8.by',
+            'type' => 'belastro',
             'title_ru' => 'test_title_8',
             //'author_ru' => 'Author8',
             'description_ru' => 'test description 8',
@@ -172,6 +220,7 @@ class SiteValidationTest extends TestCase
         $user->assignRole('admin');
         $response = $this->actingAs($user)->post('/sites', [
             'url' => 'https://www.test_url9.by',
+            'type' => 'belastro',
             'title_ru' => 'test_title_9',
             'author_ru' => 123,
             'description_ru' => 'test description 9',

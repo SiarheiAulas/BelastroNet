@@ -15,6 +15,7 @@ class LinkCreateTest extends TestCase
     {
         $response = $this->post('/links',[
                                         'url' => 'https://www.testlink1.com',
+                                        'type' => 'forums',
                                         'title_ru' => 'test_title_1',
                                         'description_ru' => 'lorem ipsum test description text 1',
                                         'title_by' => 'test_title_1',
@@ -32,6 +33,7 @@ class LinkCreateTest extends TestCase
         $user->assignRole('user');
         $response = $this->actingAs($user)->post('/links',[
                                                         'url' => 'https://www.testlink2.com',
+                                                        'type' => 'forums',
                                                         'title_ru' => 'test_title_2',
                                                         'description_ru' => 'lorem ipsum  description text 2',
                                                         'title_by' => 'test_title_2',
@@ -48,6 +50,7 @@ class LinkCreateTest extends TestCase
         $admin->assignRole('admin');
         $response = $this->actingAs($admin)->post('/links',[
                                                             'url' => 'https://www.testlink3.com',
+                                                            'type' => 'forums',
                                                             'title_ru' => 'test_title_3',
                                                             'description_ru' => 'lorem test description text 3',
                                                             'title_by' => 'test_title_3',

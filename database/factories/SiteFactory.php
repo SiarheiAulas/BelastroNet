@@ -11,6 +11,7 @@ class SiteFactory extends Factory
     {
         return [
             'author_id' => User::factory(),
+            'type' => fake()->randomElement(['belastro','other','gov','com','youtube','tg','soc','baf']),
             'url'=> fake()->unique()->url(),
             'author_ru' => fake()->name(), 
             'title_ru'=> fake()->sentence(),

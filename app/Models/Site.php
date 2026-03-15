@@ -14,7 +14,7 @@ class Site extends Model
 {
     use HasFactory, LogsActivity, SoftDeletes, HasAuthor, Searchable;
 
-    protected $fillable = ['author_id','author','url','author_ru','title_ru','description_ru','author_by','title_by','description_by','author_en','title_en','description_en'];
+    protected $fillable = ['author_id','type','author','url','author_ru','title_ru','description_ru','author_by','title_by','description_by','author_en','title_en','description_en'];
 
     #[SearchUsingFullText(['author_ru','title_ru','description_ru','author_by','title_by','description_by','author_en','title_en','description_en'])]
     public function toSearchableArray(){

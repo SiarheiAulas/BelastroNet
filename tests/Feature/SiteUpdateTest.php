@@ -18,6 +18,7 @@ class SiteUpdateTest extends TestCase
         $id = $site->id;
         $response = $this->put("/sites/{$id}", [
                                                 'url' => 'https://www.testsite-new.com',
+                                                'type' => 'belastro',
                                                 'title_ru' => 'new_test_title_1',
                                                 'author_ru' => 'Author1',
                                                 'description_ru' => 'new ipsum test description text 1',
@@ -40,6 +41,7 @@ class SiteUpdateTest extends TestCase
         $id = $site->id;
         $response = $this->actingAs($user)->put("/sites/{$id}", [
                                                                 'url' => 'https://www.testsite-new.com',
+                                                                'type' => 'belastro',
                                                                 'title_ru' => 'new_title_2',
                                                                 'author_ru' => 'Author2',
                                                                 'description_ru' => 'new ipsum description 2',
@@ -61,6 +63,7 @@ class SiteUpdateTest extends TestCase
         $id = $site->id;
         $response = $this->actingAs($admin)->put("/sites/{$id}", [
                                                                 'url' => 'https://www.testsite-new.com',
+                                                                'type' => 'belastro',
                                                                 'title_ru' => 'new_title_3',
                                                                 'author_ru' => 'Author3',
                                                                 'description_ru' => 'new ipsum description 3',

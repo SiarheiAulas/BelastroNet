@@ -15,6 +15,7 @@ class SiteCreateTest extends TestCase
     {
         $response = $this->post('/sites',[
                                         'url' => 'https://www.testsite1.com',
+                                        'type' => 'belastro',
                                         'title_ru' => 'test_title_1',
                                         'author_ru' => 'Author1',
                                         'description_ru' => 'lorem ipsum test description text 1',
@@ -35,6 +36,7 @@ class SiteCreateTest extends TestCase
         $user->assignRole('user');
         $response = $this->actingAs($user)->post('/sites',[
                                                         'url' => 'https://www.testsite2.com',
+                                                        'type' => 'belastro',
                                                         'title_ru' => 'test_title_2',
                                                         'author_ru' => 'Author2',
                                                         'description_ru' => 'lorem ipsum  description text 2',
@@ -54,6 +56,7 @@ class SiteCreateTest extends TestCase
         $admin->assignRole('admin');
         $response = $this->actingAs($admin)->post('/sites',[
                                                         'url' => 'https://www.testsite3.com',
+                                                        'type' => 'belastro',
                                                         'title_ru' => 'test_title_3',
                                                         'author_ru' => 'Author3',
                                                         'description_ru' => 'lorem test description text 3',

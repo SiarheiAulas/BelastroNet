@@ -16,6 +16,7 @@ class LinkSeeder extends Seeder
         Link::create([
             'author_id'=>1,
             'url'=>'http://example1.com',
+            'type' =>'solar',
             'title_ru'=>'external_site_1',
             'description_ru'=>'lorem ipsum example 1',
             'title_by'=>'external_site_1',

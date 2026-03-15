@@ -31,6 +31,7 @@ class SitesController extends Controller
         $site = new Site;
 
         $site->author_id = auth()->id();
+        $site->type = $request->type;
         $site->author_ru = $request->author_ru;
         $site->author_by = $request->author_by;
         $site->author_en = $request->author_en;
@@ -56,6 +57,7 @@ class SitesController extends Controller
 
         $validated = $request->validated();
         
+        $site->type = $request->type;
         $site->author_ru = $request->author_ru;
         $site->author_by = $request->author_by;
         $site->author_en = $request->author_en;

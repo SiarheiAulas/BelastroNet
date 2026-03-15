@@ -23,6 +23,7 @@ class LinkRequest extends FormRequest
     {
         return [
             'url'=>'required|url|unique:links,url',
+            'type'=>'required|in:forums,news,maps,solar,minor,variable,amateur,sat,science,calcs,weather',
             'title_ru'=>'required|string|max:255',
             'description_ru'=>'required|string',
             'title_by'=>'required|string|max:255',

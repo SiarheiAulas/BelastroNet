@@ -17,6 +17,7 @@ return new class extends Migration
             $table->softDeletes();
             $table->foreignId('author_id')->required();
             $table->string('url')->required();
+            $table->set('type',['forums','news','maps','solar','minor','variable','amateur','sat','science','calcs','weather']);
             $table->string('title_ru')->required();
             $table->text('description_ru')->required();
             $table->string('title_by')->required();

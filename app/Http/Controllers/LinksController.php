@@ -32,6 +32,7 @@ class LinksController extends Controller
 
         $link->author_id = auth()->id();
         $link->url = $request->url;
+        $link->type = $request->type;
         $link->title_ru = $request->title_ru;
         $link->title_by = $request->title_by;
         $link->title_en = $request->title_en;
@@ -53,6 +54,7 @@ class LinksController extends Controller
         $validated = $request->validated();
 
         $link->url = $request->url;
+        $link->type = $request->type;
         $link->title_ru = $request->title_ru;
         $link->title_by = $request->title_by;
         $link->title_en = $request->title_en;

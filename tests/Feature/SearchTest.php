@@ -58,6 +58,7 @@ class SearchTest extends TestCase
 
         $site = Site::create([
                             'author_id' => $user->id,
+                            'type' => 'baf',
                             'url' => 'https://www.test.com',
                             'title_ru' => 'test item 1 site',
                             'author_ru' => 'Test Author',
@@ -72,6 +73,7 @@ class SearchTest extends TestCase
 
         $link = Link::create([
                             'author_id' => $user->id,
+                            'type' => 'forums',
                             'url' => 'https://test.belastro.net',
                             'title_ru' => 'test item 1 external link',
                             'description_ru' => 'Test item 1 site at belastro.net project',
@@ -163,6 +165,7 @@ class SearchTest extends TestCase
 
         $site = Site::create(['author_id' => $user->id,
                             'url' => 'https://www.test.com',
+                            'type' => 'gov',
                             'title_ru' => 'test item 1 site',
                             'author_ru' => 'Test Author',
                             'description_ru' => 'Test site to test some items',
@@ -176,6 +179,7 @@ class SearchTest extends TestCase
 
         $link = Link::create([
                             'author_id' => $user->id,
+                            'type' => 'forums',
                             'url' => 'https://test.belastro.net',
                             'title_ru' => 'test item 1 external link',
                             'description_ru' => 'Test item 1 site at belastro.net project',
